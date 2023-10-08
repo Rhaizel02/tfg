@@ -1,0 +1,22 @@
+<h1>Lista de Hechizos</h1>
+<ul>
+  <li *ngFor="let hechizo of detallesHechizos">
+    <h2>{{ hechizo.name }}</h2>
+    <p><strong>Descripción:</strong> {{ hechizo.desc }}</p>
+    <p><strong>Nivel superior:</strong> {{ hechizo.higher_level }}</p>
+    <p><strong>Rango:</strong> {{ hechizo.range }}</p>
+    <p><strong>Componentes:</strong> {{ hechizo.components }}</p>
+    <p><strong>Material:</strong> {{ hechizo.material }}</p>
+    <p><strong>Ritual:</strong> {{ hechizo.ritual }}</p>
+    <div *ngIf="hechizo.damage">
+        <strong>Daño:</strong>
+        <ul>
+        <li><strong>Tipo de daño: </strong>{{ hechizo.damage.damage_type.name }} </li>
+        <li><strong>Dados de Daño: </strong>{{ hechizo.damage.damage_at_slot_level }} </li>
+        </ul>
+        
+      </div>
+    <p><strong>Escuela:</strong> {{ hechizo.school.name }}</p>
+    <p><strong>Clases:</strong> {{ hechizo.classes.name }}</p>
+  </li>
+</ul>
