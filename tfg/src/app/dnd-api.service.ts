@@ -9,6 +9,10 @@ export class DndApiService {
 
   constructor(private http: HttpClient) { }
 
+  obtenerApi(id : string){
+    return this.http.get(`${this.apiUrl}${id}`);
+  }
+
   obtenerHechizos() {
     return this.http.get(`${this.apiUrl}/spells`);
   }

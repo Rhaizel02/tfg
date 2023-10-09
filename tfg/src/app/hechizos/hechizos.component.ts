@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DndApiService } from '../dnd-api.service';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-hechizos',
@@ -9,6 +10,7 @@ import { DndApiService } from '../dnd-api.service';
 export class HechizosComponent implements OnInit {
   hechizos: any[] = [];
   detallesHechizos: any[] = [];
+  cargado = false;
 
   constructor(private hechizosApiService: DndApiService) { }
 
@@ -16,6 +18,7 @@ export class HechizosComponent implements OnInit {
     this.hechizosApiService.obtenerHechizos().subscribe((data: any) => {
       this.hechizos = data.results;
       this.cargarDetallesHechizos();
+      this.cargado=true;
     });
   }
 

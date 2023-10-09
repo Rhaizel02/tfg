@@ -6,18 +6,32 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule} from '@angular/common/http'
 import { MenuComponent } from './menu/menu.component';
 import { HechizosComponent } from './hechizos/hechizos.component';
+import { MatMenuModule } from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { CabeceraComponent } from './cabecera/cabecera.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    HechizosComponent
+    HechizosComponent,
+    CabeceraComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatProgressBarModule,
+    MatDividerModule,
+    MatIconModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
