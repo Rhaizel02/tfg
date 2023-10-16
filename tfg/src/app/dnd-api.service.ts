@@ -21,6 +21,10 @@ export class DndApiService {
     return this.http.get(`${this.apiUrl}spells/${id}`);
   }
 
+  obtenerHechizoPorNombre(nombre: string) {
+    return this.http.get(`${this.apiUrl}spells/?name=${nombre}`);
+  }
+
   obtenerDetallesSubindicePorId(hechizoId: string, subindiceId: string) {
     return this.http.get(`${this.apiUrl}spells/${hechizoId}/${subindiceId}`); 
   }

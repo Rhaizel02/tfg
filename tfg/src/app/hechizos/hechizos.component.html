@@ -1,15 +1,21 @@
 <h1>Lista de Hechizos</h1>
-<div *ngIf="!cargado"><mat-progress-bar mode="indeterminate"></mat-progress-bar>
+<div *ngIf="!cargado">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
+
+<input type="text" placeholder="Busca un hechizo..." [(ngModel)]="busqueda" />
+<button (click)="BuscarApi()">Buscar</button>
 
 <ul>
   <li *ngFor="let hechizo of detallesHechizos">
-    <h2>{{ hechizo.name }}</h2>
-    <p><strong>Descripción:</strong> {{ hechizo.desc }}</p>
-    <p><strong>Nivel superior:</strong> {{ hechizo.higher_level }}</p>
-    <p><strong>Rango:</strong> {{ hechizo.range }}</p>
-    <p><strong>Componentes:</strong> {{ hechizo.components }}</p>
-    <p><strong>Material:</strong> {{ hechizo.material }}</p>
-    <p><strong>Ritual:</strong> {{ hechizo.ritual }}</p>
+    <div>
+      <h2 *ngIf="hechizo.name">{{ hechizo.name | uppercase }}</h2>
+      <p><strong>Descripción:</strong> {{ hechizo.desc }}</p>
+      <p><strong>Nivel superior:</strong> {{ hechizo.higher_level }}</p>
+      <p><strong>Rango:</strong> {{ hechizo.range }}</p>
+      <p><strong>Componentes:</strong> {{ hechizo.components }}</p>
+      <p><strong>Material:</strong> {{ hechizo.material }}</p>
+      <p><strong>Ritual:</strong> {{ hechizo.ritual }}</p>
+    </div>
   </li>
 </ul>

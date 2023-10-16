@@ -13,13 +13,15 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { CabeceraComponent } from './cabecera/cabecera.component';
+import { FormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     HechizosComponent,
-    CabeceraComponent
+    CabeceraComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,8 @@ import { CabeceraComponent } from './cabecera/cabecera.component';
     MatDividerModule,
     MatIconModule,
     MatToolbarModule,
+    FormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
