@@ -14,6 +14,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { CabeceraComponent } from './cabecera/cabecera.component';
 import { FormsModule } from '@angular/forms'; 
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule, Sort} from '@angular/material/sort';
+
+
+
 
 @NgModule({
   declarations: [
@@ -35,6 +40,8 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatToolbarModule,
     FormsModule,
+    MatTableModule,
+    MatSortModule,
 
   ],
   providers: [],

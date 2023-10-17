@@ -1,4 +1,5 @@
 <h1>Lista de Hechizos</h1>
+
 <div *ngIf="!cargado">
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
@@ -6,16 +7,41 @@
 <input type="text" placeholder="Busca un hechizo..." [(ngModel)]="busqueda" />
 <button (click)="BuscarApi()">Buscar</button>
 
-<ul>
-  <li *ngFor="let hechizo of detallesHechizos">
-    <div>
-      <h2 *ngIf="hechizo.name">{{ hechizo.name | uppercase }}</h2>
-      <p><strong>Descripción:</strong> {{ hechizo.desc }}</p>
-      <p><strong>Nivel superior:</strong> {{ hechizo.higher_level }}</p>
-      <p><strong>Rango:</strong> {{ hechizo.range }}</p>
-      <p><strong>Componentes:</strong> {{ hechizo.components }}</p>
-      <p><strong>Material:</strong> {{ hechizo.material }}</p>
-      <p><strong>Ritual:</strong> {{ hechizo.ritual }}</p>
-    </div>
-  </li>
-</ul>
+<table mat-table [dataSource]="detallesHechizos"  class="mat-elevation-z8" matSort (matSortChange)="sortData($event)">
+
+  <ng-container matColumnDef="nombre">
+    <th mat-sort-header="name" mat-header-cell *matHeaderCellDef> Name</th>
+    <td mat-cell *matCellDef="let hechizo"> {{hechizo.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="level">
+    <th mat-sort-header="level" mat-header-cell *matHeaderCellDef> Level</th>
+    <td mat-cell *matCellDef="let hechizo"> {{hechizo.level}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="range">
+    <th mat-sort-header="range" mat-header-cell *matHeaderCellDef> Range</th>
+    <td mat-cell *matCellDef="let hechizo"> {{hechizo.range}} </td>
+  </ng-container>
+
+  <!--
+  <tr>
+    <th mat-sort-header="name">Nombre</th>
+    <th mat-sort-header="range">Rango</th>
+    <th mat-sort-header="components">Componentes</th>
+    <th mat-sort-header="ritual">Ritual</th>
+    <th mat-sort-header="school">Escuela</th>
+  </tr>
+
+  <tr *ngFor="let hechizo of detallesHechizos">
+    <td>{{hechizo.name}}</td>
+    <td>{{hechizo.range}}</td>
+    <td>{{hechizo.components}}</td>
+    <td>{{hechizo.ritual}}</td>
+    <td>{{hechizo.school.name}}</td>
+  </tr>
+  -->
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

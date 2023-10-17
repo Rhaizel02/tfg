@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DndApiService } from '../dnd-api.service';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { FormsModule } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-hechizos',
@@ -14,6 +12,7 @@ export class HechizosComponent implements OnInit {
   detallesHechizos: any[] = [];
   cargado = false;
   busqueda: string = '';
+  displayedColumns: string[] = ['nombre', 'level','range'];
 
   constructor(private hechizosApiService: DndApiService) {}
 
@@ -55,4 +54,31 @@ export class HechizosComponent implements OnInit {
         });
     }
   }
+
+  sortData(sort: Sort) {
+    const data = this.detallesHechizos.slice();
+    if (!sort.active || sort.direction === '') {
+      this.detallesHechizos = data;
+      return;
+    }
+
+    this.detallesHechizos = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'name':
+          return compare(a.name, b.name, isAsc);
+        case 'level':
+          return compare(a.level, b.level, isAsc);
+        case 'range':
+          return compare(a.range, b.range, isAsc);
+
+        default:
+          return 0;
+      }
+    });
+  }
+}
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
