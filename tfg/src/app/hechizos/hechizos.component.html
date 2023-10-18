@@ -1,47 +1,70 @@
-<h1>Lista de Hechizos</h1>
+<div class="text-center">
+  <h1>Lista de Hechizos</h1>
 
-<div *ngIf="!cargado">
-  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  <div class="flex-row">
+    <mat-form-field>
+      <mat-label>Search your spell..</mat-label>
+      <input matInput type="text" [(ngModel)]="busqueda" />
+      <button
+        *ngIf="busqueda"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="busqueda = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <button
+      (click)="BuscarApi()"
+      mat-fab
+      color="primary"
+      aria-label="Example icon button with a delete icon"
+    >
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+
+  <mat-form-field>
+    <mat-label>Select an option</mat-label>
+    <mat-select [(value)]="escuela">
+      <mat-option>-School-</mat-option>
+      <mat-option *ngFor="let hechizo of detallesHechizos" value="hechizo.school">hechizo.school.name</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <p>You selected: {{escuela}}</p>
+  
+
+  <div *ngIf="!cargado">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+
+  <table
+    *ngIf="cargado"
+    mat-table
+    [dataSource]="detallesHechizos"
+    class="mat-elevation-z8"
+    matSort
+    (matSortChange)="sortData($event)"
+  >
+    <ng-container matColumnDef="nombre">
+      <th mat-sort-header="name" mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let hechizo">{{ hechizo.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="level">
+      <th mat-sort-header="level" mat-header-cell *matHeaderCellDef>Level</th>
+      <td mat-cell *matCellDef="let hechizo">{{ hechizo.level }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="range">
+      <th mat-sort-header="range" mat-header-cell *matHeaderCellDef>Range</th>
+      <td mat-cell *matCellDef="let hechizo">{{ hechizo.range }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
 </div>
-
-<input type="text" placeholder="Busca un hechizo..." [(ngModel)]="busqueda" />
-<button (click)="BuscarApi()">Buscar</button>
-
-<table mat-table [dataSource]="detallesHechizos"  class="mat-elevation-z8" matSort (matSortChange)="sortData($event)">
-
-  <ng-container matColumnDef="nombre">
-    <th mat-sort-header="name" mat-header-cell *matHeaderCellDef> Name</th>
-    <td mat-cell *matCellDef="let hechizo"> {{hechizo.name}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="level">
-    <th mat-sort-header="level" mat-header-cell *matHeaderCellDef> Level</th>
-    <td mat-cell *matCellDef="let hechizo"> {{hechizo.level}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="range">
-    <th mat-sort-header="range" mat-header-cell *matHeaderCellDef> Range</th>
-    <td mat-cell *matCellDef="let hechizo"> {{hechizo.range}} </td>
-  </ng-container>
-
-  <!--
-  <tr>
-    <th mat-sort-header="name">Nombre</th>
-    <th mat-sort-header="range">Rango</th>
-    <th mat-sort-header="components">Componentes</th>
-    <th mat-sort-header="ritual">Ritual</th>
-    <th mat-sort-header="school">Escuela</th>
-  </tr>
-
-  <tr *ngFor="let hechizo of detallesHechizos">
-    <td>{{hechizo.name}}</td>
-    <td>{{hechizo.range}}</td>
-    <td>{{hechizo.components}}</td>
-    <td>{{hechizo.ritual}}</td>
-    <td>{{hechizo.school.name}}</td>
-  </tr>
-  -->
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>

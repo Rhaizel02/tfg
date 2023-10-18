@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy  } from '@angular/core';
 import { DndApiService } from '../dnd-api.service';
 import { Sort } from '@angular/material/sort';
 
@@ -6,6 +6,7 @@ import { Sort } from '@angular/material/sort';
   selector: 'app-hechizos',
   templateUrl: './hechizos.component.html',
   styleUrls: ['./hechizos.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HechizosComponent implements OnInit {
   hechizos: any[] = [];
@@ -13,6 +14,8 @@ export class HechizosComponent implements OnInit {
   cargado = false;
   busqueda: string = '';
   displayedColumns: string[] = ['nombre', 'level','range'];
+  escuela : string = "";
+
 
   constructor(private hechizosApiService: DndApiService) {}
 
@@ -38,6 +41,20 @@ export class HechizosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.hechizosApiService.obtenerHechizos().subscribe((data: any) => {
+      this.hechizos = data.results;
+      this.cargarDetallesHechizos();
+      this.cargado = true;
+    });
+    // this.cargarHechizos();
+  }
+ /*
+  refresh() {
+    this.cd.detectChanges();
+  } 
+  */
+
+  cargarHechizos(){
     this.hechizosApiService.obtenerHechizos().subscribe((data: any) => {
       this.hechizos = data.results;
       this.cargarDetallesHechizos();

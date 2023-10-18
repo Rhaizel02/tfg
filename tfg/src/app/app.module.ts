@@ -16,6 +16,9 @@ import { CabeceraComponent } from './cabecera/cabecera.component';
 import { FormsModule } from '@angular/forms'; 
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule, Sort} from '@angular/material/sort';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 
@@ -42,7 +45,9 @@ import {MatSortModule, Sort} from '@angular/material/sort';
     FormsModule,
     MatTableModule,
     MatSortModule,
-
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -13,8 +13,12 @@ export class DndApiService {
     return this.http.get(`${this.apiUrl}${id}`);
   }
 
+  getSchools(){
+    return this.http.get(`${this.apiUrl}magic-schools`);
+  }
+
   obtenerHechizos() {
-    return this.http.get(`${this.apiUrl}/spells`);
+    return this.http.get(`${this.apiUrl}spells`);
   }
 
   obtenerHechizoPorId(id: string) {
