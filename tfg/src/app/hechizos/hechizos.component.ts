@@ -14,8 +14,29 @@ export class HechizosComponent implements OnInit {
   cargado = false;
   busqueda: string = '';
   displayedColumns: string[] = ['nombre', 'level','range'];
-  escuela : string = "";
+  escuelas : string[] = [];
+  escuela_seleccionada : string = "";
+  niveles : number[] = [0,1,2,3,4,5,6,7,8,9];
+  nivel_seleccionado : number = -1;
+  clases : string[] = [];
+  clase_seleccionada : string = "";
 
+  
+  obtenerEscuelas(){
+    this.hechizosApiService.getSchools().subscribe((data: any) => {
+      for (const escuela of data.results) {
+        this.escuelas.push(escuela.name);
+      }
+    });
+  }
+
+  obtenerClases(){
+    this.hechizosApiService.obtenerClases().subscribe((data: any) => {
+      for (const clase of data.results) {
+        this.clases.push(clase.name);
+      }
+    });
+  }
 
   constructor(private hechizosApiService: DndApiService) {}
 
@@ -41,11 +62,12 @@ export class HechizosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.obtenerEscuelas();
     this.hechizosApiService.obtenerHechizos().subscribe((data: any) => {
       this.hechizos = data.results;
       this.cargarDetallesHechizos();
-      this.cargado = true;
     });
+    this.cargado = true;
     // this.cargarHechizos();
   }
  /*
@@ -58,8 +80,8 @@ export class HechizosComponent implements OnInit {
     this.hechizosApiService.obtenerHechizos().subscribe((data: any) => {
       this.hechizos = data.results;
       this.cargarDetallesHechizos();
-      this.cargado = true;
     });
+    this.cargado = true;
   }
 
   cargarDetallesHechizos() {

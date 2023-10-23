@@ -2,6 +2,7 @@
   <h1>Lista de Hechizos</h1>
 
   <div class="flex-row">
+
     <mat-form-field>
       <mat-label>Search your spell..</mat-label>
       <input matInput type="text" [(ngModel)]="busqueda" />
@@ -26,16 +27,37 @@
     </button>
   </div>
 
-  <mat-form-field>
-    <mat-label>Select an option</mat-label>
-    <mat-select [(value)]="escuela">
-      <mat-option>-School-</mat-option>
-      <mat-option *ngFor="let hechizo of detallesHechizos" value="hechizo.school">hechizo.school.name</mat-option>
-    </mat-select>
-  </mat-form-field>
-  
-  <p>You selected: {{escuela}}</p>
-  
+  <div class="flex-row">
+    <mat-form-field>
+      <mat-label>Select the magic school</mat-label>
+      <mat-select [(value)]="escuela_seleccionada">
+        <mat-option>-School-</mat-option>
+        <mat-option *ngFor="let escuela of escuelas" value="{{ escuela }}">{{
+          escuela
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Select the spell's class</mat-label>
+      <mat-select [(value)]="clase_seleccionada">
+        <mat-option>-School-</mat-option>
+        <mat-option *ngFor="let clase of clases" value="{{ clase }}">{{
+          clase
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+
+      <mat-label>Select the spell's level</mat-label>
+      <mat-select [(value)]="nivel_seleccionado">
+        <mat-option>-School-</mat-option>
+        <mat-option *ngFor="let nivel of niveles" value="{{ nivel }}">{{
+          nivel
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
   <div *ngIf="!cargado">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
@@ -65,6 +87,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row ; columns: displayedColumns"></tr>
+
   </table>
 </div>

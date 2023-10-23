@@ -9,6 +9,10 @@ export class DndApiService {
 
   constructor(private http: HttpClient) { }
 
+  obtenerhechizosporclase() {
+
+  }
+
   obtenerApi(id : string){
     return this.http.get(`${this.apiUrl}${id}`);
   }
@@ -33,4 +37,28 @@ export class DndApiService {
     return this.http.get(`${this.apiUrl}spells/${hechizoId}/${subindiceId}`); 
   }
 
+  // obtener los hechizos de la escuela de abjuracion de nivel 2
+  obtenerHechizosPorEscuelaYNivel(escuela: string, nivel: number) {
+    return this.http.get(`${this.apiUrl}spells/?school=${escuela}&level=${nivel}`);
+  }
+
+  //obtener escuelas de magia
+  obtenerEscuelasDeMagia() {
+    return this.http.get(`${this.apiUrl}magic-schools`);
+  }
+
+  //obtener clases
+  obtenerClases() {
+    return this.http.get(`${this.apiUrl}classes`);
+  }
+
+  //obtener hechizos por clase y nivel
+  obtenerHechizosPorClaseYNivel(clase: string, nivel: number) {
+    return this.http.get(`${this.apiUrl}spells/?classes=${clase}&level=${nivel}`);
+  }
+
+  //obtener hechizos por clase
+  obtenerHechizosPorClase(clase: string) {
+    return this.http.get(`${this.apiUrl}spells/?classes=${clase}`);
+  }
 }
