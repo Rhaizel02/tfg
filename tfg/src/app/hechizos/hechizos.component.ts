@@ -1,6 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy  } from '@angular/core';
 import { DndApiService } from '../dnd-api.service';
 import { Sort } from '@angular/material/sort';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { ViewChild } from '@angular/core';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-hechizos',
@@ -12,6 +15,7 @@ export class HechizosComponent implements OnInit {
   hechizos: any[] = [];
   detallesHechizos: any[] = [];
   cargado = false;
+  nombre : string = '';
   busqueda: string = '';
   displayedColumns: string[] = ['nombre', 'level','range'];
   escuelas : string[] = [];
@@ -20,7 +24,14 @@ export class HechizosComponent implements OnInit {
   nivel_seleccionado : number = -1;
   clases : string[] = [];
   clase_seleccionada : string = "";
+  
+  pageSize : number = 10;
+  page : number = 0;
 
+  handlePage(event: PageEvent) {
+    this.page = event.pageIndex;
+    this.pageSize = event.pageSize;
+  }
   
   obtenerEscuelas(){
     this.hechizosApiService.getSchools().subscribe((data: any) => {
@@ -40,12 +51,13 @@ export class HechizosComponent implements OnInit {
 
   constructor(private hechizosApiService: DndApiService) {}
 
-  BuscarApi() {
+  BuscarApi(nombre : string, escuela : string, clase : string, nivel : number){ 
     this.cancelarHechizos();
     this.cargado = false;
-    this.hechizosApiService.obtenerHechizoPorNombre(this.busqueda).subscribe(
+    this.hechizosApiService.obtenerHechizosConFiltros(nombre, escuela, clase, nivel).subscribe(
       (data: any) => {
         this.hechizos = data.results;
+        console.log(this.hechizos);
         this.cargarDetallesHechizos();
         this.cargado = true;
       },
@@ -62,6 +74,7 @@ export class HechizosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.obtenerClases();
     this.obtenerEscuelas();
     this.hechizosApiService.obtenerHechizos().subscribe((data: any) => {
       this.hechizos = data.results;
