@@ -4,6 +4,8 @@ import { Sort } from '@angular/material/sort';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { DialogHechizoComponent } from '../dialog-hechizo/dialog-hechizo.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-hechizos',
@@ -24,7 +26,6 @@ export class HechizosComponent implements OnInit {
   nivel_seleccionado : number = -1;
   clases : string[] = [];
   clase_seleccionada : string = "";
-  
   pageSize : number = 10;
   page : number = 0;
 
@@ -49,7 +50,16 @@ export class HechizosComponent implements OnInit {
     });
   }
 
-  constructor(private hechizosApiService: DndApiService) {}
+
+
+  constructor(private hechizosApiService: DndApiService, private dialog : MatDialog) {}
+  
+  abrirDialog(entrada: any) {
+    const dialogRef = this.dialog.open(DialogHechizoComponent, {
+      width: '400px',
+      data: entrada, // Pasamos la entrada seleccionada al diálogo
+    });
+  }
 
   BuscarApi(nombre : string, escuela : string, clase : string, nivel : number){ 
     this.cancelarHechizos();

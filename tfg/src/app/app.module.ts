@@ -19,6 +19,9 @@ import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { DialogHechizoComponent } from './dialog-hechizo/dialog-hechizo.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MenuComponent,
     HechizosComponent,
     CabeceraComponent,
+    DialogHechizoComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatButtonModule,
     MatSelectModule,
     MatPaginatorModule,
+    MatDialogModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent],

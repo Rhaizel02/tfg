@@ -2,7 +2,7 @@
   <h1>List of Spells</h1>
 
   <div class="flex-row">
-    <mat-form-field>
+    <mat-form-field class="mx-3 w-1/4">
       <mat-label>Search your spell..</mat-label>
       <input matInput type="text" [(ngModel)]="nombre" />
       <button
@@ -18,7 +18,7 @@
     <!--
     <mat-form-field>
       <mat-label>Select the class</mat-label>
-      <mat-select [(value)]="clase_seleccionada">
+      <mat-select [(value)]="clase_seleccionada">cd
         <mat-option>-Class-</mat-option>
         <mat-option *ngFor="let clase of clases" value="{{ clase }}">{{
           clase
@@ -26,7 +26,7 @@
       </mat-select>
     </mat-form-field>
     -->
-    <mat-form-field>
+    <mat-form-field class="mx-3 w-1/6">
       <mat-label>Select the magic school</mat-label>
       <mat-select [(value)]="escuela_seleccionada">
         <mat-option>-School-</mat-option>
@@ -36,7 +36,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="mx-3 w-1/6">
       <mat-label>Select the spell's level</mat-label>
       <mat-select [(value)]="nivel_seleccionado">
         <mat-option>-Level-</mat-option>
@@ -66,6 +66,7 @@
   <div *ngIf="!cargado">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
+
   <div class="mat-elevation-z8">
     <table
       mat-table
@@ -90,12 +91,12 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <tr class="hover:cursor-pointer hover:bg-gray-50 "mat-row *matRowDef="let row; columns: displayedColumns" matTooltip="Info about the spell"  [matTooltipPosition]="'below'" (click)="abrirDialog(row)"></tr>
     </table>
 
     <mat-paginator
       #paginator
-      [pageSizeOptions]="[5, 10, 15]"
+      [pageSizeOptions]="[10, 15, 20]"
       [length]="detallesHechizos.length"
       showFirstLastButtons
       aria-label="Select page of spells"
