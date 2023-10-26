@@ -22,6 +22,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { DialogHechizoComponent } from './dialog-hechizo/dialog-hechizo.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { PieComponent } from './pie/pie.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     HechizosComponent,
     CabeceraComponent,
     DialogHechizoComponent,
+    PieComponent,
   ],
   imports: [
     BrowserModule,

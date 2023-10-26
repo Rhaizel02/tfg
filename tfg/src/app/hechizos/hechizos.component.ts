@@ -3,9 +3,11 @@ import { DndApiService } from '../dnd-api.service';
 import { Sort } from '@angular/material/sort';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { ViewChild } from '@angular/core';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { DialogHechizoComponent } from '../dialog-hechizo/dialog-hechizo.component';
 import { MatDialog } from '@angular/material/dialog';
+import { catchError, map, startWith, switchMap } from 'rxjs/operators';
+import { merge, Observable, of as observableOf, pipe } from 'rxjs';
 
 @Component({
   selector: 'app-hechizos',
@@ -14,9 +16,12 @@ import { MatDialog } from '@angular/material/dialog';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HechizosComponent implements OnInit {
+  public dataSource = new MatTableDataSource<any>();
+  @ViewChild(MatTable, { static: false }) table!: MatTable<any>;
+  // Variables que almacenan los hechizos y sus detalles
   hechizos: any[] = [];
-  detallesHechizos: any[] = [];
-  cargado = false;
+
+  // Variables para el filtrado
   nombre : string = '';
   busqueda: string = '';
   displayedColumns: string[] = ['nombre', 'level','range'];
@@ -26,33 +31,25 @@ export class HechizosComponent implements OnInit {
   nivel_seleccionado : number = -1;
   clases : string[] = [];
   clase_seleccionada : string = "";
+
+  // Variables para la paginación
   pageSize : number = 10;
-  page : number = 0;
+  currentPage : number = 1;
+  total : number = this.hechizos.length;
+  cargado = false;
 
-  handlePage(event: PageEvent) {
-    this.page = event.pageIndex;
-    this.pageSize = event.pageSize;
-  }
-  
-  obtenerEscuelas(){
-    this.hechizosApiService.getSchools().subscribe((data: any) => {
-      for (const escuela of data.results) {
-        this.escuelas.push(escuela.name);
-      }
-    });
-  }
-
-  obtenerClases(){
-    this.hechizosApiService.obtenerClases().subscribe((data: any) => {
-      for (const clase of data.results) {
-        this.clases.push(clase.name);
-      }
-    });
-  }
-
-
+  parametros : string = "";
+  filtros : string = "";
 
   constructor(private hechizosApiService: DndApiService, private dialog : MatDialog) {}
+
+  obtenerClases(){
+    this.hechizosApiService.obtenerClasesMagicas().subscribe((data: any) => {
+      for (const clase of data.results) {
+        this.clases.push(clase.name.charAt(0).toUpperCase() + clase.name.slice(1));
+      }
+    });
+  }
   
   abrirDialog(entrada: any) {
     const dialogRef = this.dialog.open(DialogHechizoComponent, {
@@ -61,86 +58,46 @@ export class HechizosComponent implements OnInit {
     });
   }
 
-  BuscarApi(nombre : string, escuela : string, clase : string, nivel : number){ 
-    this.cancelarHechizos();
-    this.cargado = false;
-    this.hechizosApiService.obtenerHechizosConFiltros(nombre, escuela, clase, nivel).subscribe(
-      (data: any) => {
-        this.hechizos = data.results;
-        console.log(this.hechizos);
-        this.cargarDetallesHechizos();
-        this.cargado = true;
-      },
-      (errorResponse) => {
-        alert('oh no, there was an error when calling the dnd api');
-        console.error(errorResponse);
-      }
-    );
-  }
-
   cancelarHechizos() {
     this.hechizos = [];
-    this.detallesHechizos = [];
+    this.dataSource = new MatTableDataSource<any>();
+  }
+
+  ngAfterViewInit(): void {
+    this.obtenerClases();
+    this.cargarHechizos();
   }
 
   ngOnInit(): void {
-    this.obtenerClases();
-    this.obtenerEscuelas();
-    this.hechizosApiService.obtenerHechizos().subscribe((data: any) => {
-      this.hechizos = data.results;
-      this.cargarDetallesHechizos();
-    });
-    this.cargado = true;
-    // this.cargarHechizos();
+    ;
   }
- /*
-  refresh() {
-    this.cd.detectChanges();
-  } 
-  */
 
   cargarHechizos(){
-    this.hechizosApiService.obtenerHechizos().subscribe((data: any) => {
+    this.parametros = "?limit="+this.pageSize+"&page="+this.currentPage;
+    this.hechizosApiService.obtenerHechizos("/"+this.parametros).subscribe((data: any) => {
       this.hechizos = data.results;
-      this.cargarDetallesHechizos();
+      if (this.total != data.count)
+        this.total = data.count;
     });
+    this.cargarDetallesHechizos();
     this.cargado = true;
   }
 
   cargarDetallesHechizos() {
+  console.log("Cargando detalles");
     for (const hechizo of this.hechizos) {
       this.hechizosApiService
-        .obtenerHechizoPorId(hechizo.index)
+        .obtenerHechizos("/"+hechizo.slug)
         .subscribe((data: any) => {
-          this.detallesHechizos.push(data);
+          this.dataSource = new MatTableDataSource<any>(this.hechizos);
         });
     }
   }
 
-  sortData(sort: Sort) {
-    const data = this.detallesHechizos.slice();
-    if (!sort.active || sort.direction === '') {
-      this.detallesHechizos = data;
-      return;
-    }
-
-    this.detallesHechizos = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'name':
-          return compare(a.name, b.name, isAsc);
-        case 'level':
-          return compare(a.level, b.level, isAsc);
-        case 'range':
-          return compare(a.range, b.range, isAsc);
-
-        default:
-          return 0;
-      }
-    });
+  pageChanged(event: PageEvent) {
+    this.pageSize = event.pageSize;
+    this.currentPage = (event.pageIndex+1);
+    this.cargarHechizos();
   }
-}
 
-function compare(a: number | string, b: number | string, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
