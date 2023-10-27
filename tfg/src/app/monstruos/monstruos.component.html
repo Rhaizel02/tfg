@@ -1,1 +1,57 @@
-<p>monstruos works!</p>
+<div>
+  <h1>List of Monsters</h1>
+  <div class="flex-row">
+    <mat-form-field class="mx-3 w-1/6">
+      <mat-label>General Search...</mat-label>
+      <input matInput type="text" [(ngModel)]="nombre" />
+      <button
+        *ngIf="nombre"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="nombre = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field class="mx-3 w-1/6">
+      <mat-label>Select monster's type</mat-label>
+      <mat-select [(value)]="categoria">
+        <mat-option value="">-Class-</mat-option>
+        <mat-option *ngFor="let categoria of categorias" value="{{ categoria }}">{{
+            categoria.charAt(0).toUpperCase() + categorias.slice(1)
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="mx-3 w-1/6">
+      <mat-label>Select monster's cr</mat-label>
+      <mat-select [(value)]="cr">
+        <mat-option value="">-School-</mat-option>
+        <mat-option *ngFor="let c of crs" value="{{ c }}">{{
+          c
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="mx-3 w-1/6">
+      <mat-label>Select monster's alignment</mat-label>
+      <mat-select [(value)]="alineamiento">
+        <mat-option value="">-Level-</mat-option>
+        <mat-option *ngFor="let a of alineamientos" value="{{ a }}">{{
+          a
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button
+      mat-fab
+      color="primary"
+      aria-label="Example icon button with a delete icon"
+      (click)="Buscar()"
+    >
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+</div>

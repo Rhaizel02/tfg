@@ -91,7 +91,6 @@ export class HechizosComponent implements OnInit {
   }
 
   cargarDetallesHechizos() {
-    let array = [];
     for (const hechizo of this.hechizos) {
       this.hechizosApiService
         .obtenerHechizos("/" + hechizo.slug)
