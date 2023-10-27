@@ -11,7 +11,6 @@ export class DndApiService {
   
   
   obtenerHechizos(s : string) {
-    console.log(`${this.apiUrl}spells${s}`);
     return this.http.get(`${this.apiUrl}spells${s}`);
   }
   

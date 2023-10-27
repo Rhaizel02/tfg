@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './inicio/inicio.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { HechizosComponent } from './hechizos/hechizos.component';
+import { MonstruosComponent } from './monstruos/monstruos.component';
 
 const routes: Routes = [
-  {path:'inicio', component: InicioComponent},
-  {path:'contacto', component: ContactoComponent},
-  {path:'hechizos', component: HechizosComponent},
+  {path:'home', component: InicioComponent},
+  {path:'contact', component: ContactoComponent},
+  {path:'spells', component: HechizosComponent},
+  {path:'monsters', component: MonstruosComponent},
   {path: '', redirectTo: '/inicio', pathMatch: 'full'},
 ];
 

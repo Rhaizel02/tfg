@@ -1,7 +1,18 @@
 <div class="bg-white">
-<mat-toolbar>
-  <a routerLink="/inicio">Home &nbsp;</a>
-  <a routerLink="/contacto">Contact &nbsp;</a>
-  <a routerLink="/hechizos">Wiki &nbsp;</a>
-</mat-toolbar>
+  <mat-toolbar>
+    <a routerLink="/home">Home &nbsp;</a>
+    <a routerLink="/contact">Contact &nbsp;</a>
+    <button [matMenuTriggerFor]="wikis">Wiki<mat-icon>arrow_drop_down</mat-icon>&nbsp;</button>
+    <mat-menu #wikis="matMenu">
+      <button routerLink="/spells" mat-menu-item>
+        <span>Spells</span>
+      </button>
+      <button routerLink="/monsters" mat-menu-item>
+        <span>Monsters</span>
+      </button>
+    </mat-menu>
+    <button [matMenuTriggerFor]="tools">Tools<mat-icon>arrow_drop_down</mat-icon>&nbsp;</button>
+    <mat-menu #tools="matMenu">
+    </mat-menu>
+  </mat-toolbar>
 </div>

@@ -23,6 +23,8 @@ import { DialogHechizoComponent } from './dialog-hechizo/dialog-hechizo.componen
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { PieComponent } from './pie/pie.component';
+import {MatTreeModule} from '@angular/material/tree';
+import { MonstruosComponent } from './monstruos/monstruos.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { PieComponent } from './pie/pie.component';
     CabeceraComponent,
     DialogHechizoComponent,
     PieComponent,
+    MonstruosComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ import { PieComponent } from './pie/pie.component';
     MatSelectModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTreeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

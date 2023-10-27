@@ -1,17 +1,11 @@
 <div class="text-center">
-  <h1>List of Spells</h1>
+  <h1 class="">List of Spells</h1>
 
   <div class="flex-row">
     <mat-form-field class="mx-3 w-1/6">
-      <mat-label>Search your spell..</mat-label>
+      <mat-label>General Search...</mat-label>
       <input matInput type="text" [(ngModel)]="nombre" />
-      <button
-        *ngIf="nombre"
-        matSuffix
-        mat-icon-button
-        aria-label="Clear"
-        (click)="nombre = ''"
-      >
+      <button *ngIf="nombre" matSuffix mat-icon-button aria-label="Clear" (click)="nombre = ''">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
@@ -21,8 +15,8 @@
       <mat-select [(value)]="clase_seleccionada">
         <mat-option value="">-Class-</mat-option>
         <mat-option *ngFor="let clase of clases" value="{{ clase }}">{{
-          clase
-        }}</mat-option>
+          clase.charAt(0).toUpperCase()+clase.slice(1)
+          }}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -31,8 +25,8 @@
       <mat-select [(value)]="escuela_seleccionada">
         <mat-option value="">-School-</mat-option>
         <mat-option *ngFor="let escuela of escuelas" value="{{ escuela }}">{{
-          escuela
-        }}</mat-option>
+          escuela.charAt(0).toUpperCase()+escuela.slice(1)
+          }}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -42,65 +36,46 @@
         <mat-option value="">-Level-</mat-option>
         <mat-option *ngFor="let nivel of niveles" value="{{ nivel }}">{{
           nivel
-        }}</mat-option>
+          }}</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <button
-      mat-fab
-      color="primary"
-      aria-label="Example icon button with a delete icon"
-    >
+    <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="Buscar()">
       <mat-icon>search</mat-icon>
     </button>
   </div>
   <br />
-  <div *ngIf="!cargado">
+  <!-- <div *ngIf="!cargado">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
+-->
   <br />
-  <div class="mat-elevation-z8">
-    <table
-      mat-table
-      #table
-      [dataSource]="dataSource"
-      class="mat-elevation-z8"
-      matSort
-    >
-      <ng-container matColumnDef="nombre">
-        <th mat-sort-header="name" mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let hechizo">{{ hechizo.name }}</td>
-      </ng-container>
+  <div class="flex justify-center items-center">
+    <div class="mat-elevation-z8 w-5/6 bottom-1">
+      <table mat-table #table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+        <ng-container matColumnDef="nombre">
+          <th mat-sort-header="name" mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let hechizo">{{ hechizo.name }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="level">
-        <th mat-sort-header="level" mat-header-cell *matHeaderCellDef>Level</th>
-        <td mat-cell *matCellDef="let hechizo">{{ hechizo.level }}</td>
-      </ng-container>
+        <ng-container matColumnDef="level">
+          <th mat-sort-header="level" mat-header-cell *matHeaderCellDef>Level</th>
+          <td mat-cell *matCellDef="let hechizo">{{ hechizo.level }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="range">
-        <th mat-sort-header="range" mat-header-cell *matHeaderCellDef>Range</th>
-        <td mat-cell *matCellDef="let hechizo">{{ hechizo.range }}</td>
-      </ng-container>
+        <ng-container matColumnDef="range">
+          <th mat-sort-header="range" mat-header-cell *matHeaderCellDef>Range</th>
+          <td mat-cell *matCellDef="let hechizo">{{ hechizo.range }}</td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr
-        class="hover:cursor-pointer hover:bg-gray-50"
-        mat-row
-        *matRowDef="let row; columns: displayedColumns"
-        matTooltip="Info about the spell"
-        [matTooltipPosition]="'below'"
-        (click)="abrirDialog(row)"
-      ></tr>
-    </table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr class="hover:cursor-pointer hover:bg-gray-50" mat-row *matRowDef="let row; columns: displayedColumns"
+          matTooltip="Info about the spell" [matTooltipPosition]="'below'" (click)="abrirDialog(row)"></tr>
+      </table>
 
-    <mat-paginator
-      #paginator
-      [pageSizeOptions]="[10, 15, 20]"
-      [length]="this.total"
-      showFirstLastButtons
-      aria-label="Select page of spells"
-      (page) = pageChanged($event);
-    >
-    </mat-paginator>
+      <mat-paginator #paginator [pageSizeOptions]="[10, 15, 20]" [length]="this.total" showFirstLastButtons
+        aria-label="Select page of spells" (page)=pageChanged($event);>
+      </mat-paginator>
+    </div>
   </div>
 </div>
