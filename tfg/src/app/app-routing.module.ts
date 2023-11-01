@@ -10,7 +10,7 @@ const routes: Routes = [
   {path:'contact', component: ContactoComponent},
   {path:'spells', component: HechizosComponent},
   {path:'monsters', component: MonstruosComponent},
-  {path: '', redirectTo: '/inicio', pathMatch: 'full'},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
 
 @NgModule({

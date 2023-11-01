@@ -30,4 +30,15 @@ export class DndApiService {
     return this.http.get(`${this.apiUrl}monsters${s}`);
   }
   
+  obtenerTiposMonstruos(){
+    let tipos : string[] = [];
+    this.http.get(`${this.apiUrl}monsters/?fields=type&limit=10000`).subscribe((data: any) => {
+      for (const monstruo of data.results) {
+        if(!(tipos.includes(monstruo.type)))
+          tipos.push(monstruo.type);
+      }
+    });
+    return tipos;
+  }
+  
 }

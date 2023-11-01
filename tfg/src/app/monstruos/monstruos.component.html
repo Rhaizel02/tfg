@@ -20,7 +20,7 @@
       <mat-select [(value)]="categoria">
         <mat-option value="">-Class-</mat-option>
         <mat-option *ngFor="let categoria of categorias" value="{{ categoria }}">{{
-            categoria.charAt(0).toUpperCase() + categorias.slice(1)
+          categoria
         }}</mat-option>
       </mat-select>
     </mat-form-field>

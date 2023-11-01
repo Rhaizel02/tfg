@@ -25,7 +25,7 @@ export class MonstruosComponent {
   categoria : string = '';
   alineamiento : string = '';
   crs = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14];
-  categorias = ['aberration','beast','celestial','construct','dragon','elemental','fey','fiend','giant','humanoid','monstrosity','ooze','plant','undead'];
+  categorias: string[] = [];
   alineamientos = ['any alignment','any chaotic alignment','any evil alignment','any good alignment','any lawful alignment','any non-good alignment','any non-lawful alignment','chaotic evil','chaotic good','chaotic neutral','lawful evil','lawful good','lawful neutral','neutral','neutral evil','neutral good','unaligned'];
   displayedColumns: string[] = [
     'nombre',
@@ -50,7 +50,12 @@ export class MonstruosComponent {
   }
 
   ngAfterViewInit() {
-    this.cargarMonstruos();
+    this.cargarTiposMonstruos();
+    // this.cargarMonstruos();
+  }
+
+  cargarTiposMonstruos() {
+    this.categorias = this.hechizosApiService.obtenerTiposMonstruos();
   }
 
   cargarMonstruos() {

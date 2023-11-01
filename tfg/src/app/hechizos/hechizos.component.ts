@@ -66,7 +66,7 @@ export class HechizosComponent implements OnInit {
     // esperar medio segundo
     setTimeout(() => {
       this.cargarHechizos();
-    }, 500);
+    }, 1000);
     this.cargarHechizos();
   }
 
