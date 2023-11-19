@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HechizosComponent } from './hechizos.component';
 
+import { RacesComponent } from '../view-races/view-races.component';
 
-describe('HechizosComponent', () => {
-  let component: HechizosComponent;
-  let fixture: ComponentFixture<HechizosComponent>;
+describe('RacesComponent', () => {
+  let component: RacesComponent;
+  let fixture: ComponentFixture<RacesComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HechizosComponent]
+      declarations: [RacesComponent]
     });
-    fixture = TestBed.createComponent(HechizosComponent);
+    fixture = TestBed.createComponent(RacesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

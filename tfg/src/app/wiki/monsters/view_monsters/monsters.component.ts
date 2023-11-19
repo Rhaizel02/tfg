@@ -6,11 +6,11 @@ import { PageEvent } from '@angular/material/paginator';
 import { Consulta } from '../../../interfaces/consulta';
 
 @Component({
-  selector: 'app-monstruos',
-  templateUrl: './monstruos.component.html',
-  styleUrls: ['./monstruos.component.css'],
+  selector: 'app-monsters',
+  templateUrl: './monsters.component.html',
+  styleUrls: ['./monsters.component.css'],
 })
-export class MonstruosComponent {
+export class MonstersComponent {
   public dataSource = new MatTableDataSource<any>();
   @ViewChild(MatTable, { static: false }) table!: MatTable<any>;
   // Variable que almacenan los monstruos 

@@ -10,11 +10,11 @@ import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { merge, Observable, of as observableOf, pipe } from 'rxjs';
 
 @Component({
-  selector: 'app-hechizos',
-  templateUrl: './hechizos.component.html',
-  styleUrls: ['./hechizos.component.css'],
+  selector: 'app-spells',
+  templateUrl: './spells.component.html',
+  styleUrls: ['./spells.component.css'],
 })
-export class HechizosComponent implements OnInit {
+export class SpellsComponent implements OnInit {
   public dataSource = new MatTableDataSource<any>();
   @ViewChild(MatTable, { static: false }) table!: MatTable<any>;
   // Variables que almacenan los hechizos y sus detalles

@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './menu/menu.component';
-import { HechizosComponent } from './wiki/spells/hechizos/hechizos.component';
+import { SpellsComponent } from './wiki/spells/view_spells/spells.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -24,17 +24,21 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { PieComponent } from './pie/pie.component';
 import {MatTreeModule} from '@angular/material/tree';
-import { MonstruosComponent } from './wiki/monsters/monstruos/monstruos.component';
+import { MonstersComponent } from './wiki/monsters/view_monsters/monsters.component';
+import { RacesComponent } from './wiki/races/races/races.component';
+import { DialogmonsterComponent } from './wiki/monsters/dialog_monster/dialogmonster/dialogmonster.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    HechizosComponent,
+    SpellsComponent,
     CabeceraComponent,
     DialogHechizoComponent,
     PieComponent,
-    MonstruosComponent,
+    MonstersComponent,
+    RacesComponent,
+    DialogmonsterComponent,
   ],
   imports: [
     BrowserModule,
