@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DndApiService } from '../dnd-api.service';
+import { DndApiService } from '../../../services/dnd-api.service';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
+import { Consulta } from '../../../interfaces/consulta';
 
 @Component({
   selector: 'app-monstruos',
@@ -12,10 +13,10 @@ import { PageEvent } from '@angular/material/paginator';
 export class MonstruosComponent {
   public dataSource = new MatTableDataSource<any>();
   @ViewChild(MatTable, { static: false }) table!: MatTable<any>;
-  // Variables que almacenan los hechizos y sus detalles
-  monstruos: any[] = [];
+  // Variable que almacenan los monstruos 
+  monstruos: Consulta = { count: 0, next: '', previous: '', results: [] };
   constructor(
-    private hechizosApiService: DndApiService,
+    private api: DndApiService,
     private dialog: MatDialog
   ) {}
 
@@ -28,20 +29,18 @@ export class MonstruosComponent {
   categorias: string[] = [];
   alineamientos = ['any alignment','any chaotic alignment','any evil alignment','any good alignment','any lawful alignment','any non-good alignment','any non-lawful alignment','chaotic evil','chaotic good','chaotic neutral','lawful evil','lawful good','lawful neutral','neutral','neutral evil','neutral good','unaligned'];
   displayedColumns: string[] = [
-    'nombre',
+    'name',
     'cr',
-    'tipo',
-    'alineamiento',
-    'origen',
+    'type',
+    'alignment',
+    'book',
   ];
 
   // Variables para la paginación
-  pageSize: number = 10;
+  pageSize: number = 20;
   currentPage: number = 1;
-  total: number = 0;
   cargado = false;
 
-  parametros: string = '';
   filtros: string = '';
 
 
@@ -51,41 +50,24 @@ export class MonstruosComponent {
 
   ngAfterViewInit() {
     this.cargarTiposMonstruos();
-    // this.cargarMonstruos();
+    this.cargarMonstruos();
   }
 
   cargarTiposMonstruos() {
-    this.categorias = this.hechizosApiService.obtenerTiposMonstruos();
+    this.categorias = this.api.obtenerTiposMonstruos();
   }
 
   cargarMonstruos() {
-    this.parametros = "?limit=" + this.pageSize + "&page=" + this.currentPage+this.filtros;
-    this.hechizosApiService.obtenerHechizos("/" + this.parametros).subscribe((data: any) => {
-      this.monstruos = data.results;
-      if (this.total != data.count)
-        this.total = data.count;
-    });
-    if(this.monstruos.length > 0)
-      this.cargarDetallesMonstruos();
-    else{
-      this.dataSource = new MatTableDataSource<any>;
+    this.filtros = "?limit=" + this.pageSize + "&page="+this.currentPage;
+    this.api.obtenerMonstruos(this.filtros).subscribe(consulta => {
+      this.monstruos = consulta;
+      this.dataSource = new MatTableDataSource<any>(this.monstruos.results);
       this.dataSource.data = this.dataSource.data;
       this.table.renderRows();
-    }
+      this.cargado = true;
+    });
   }
-
-  cargarDetallesMonstruos() {
-    for (const hechizo of this.monstruos) {
-      this.hechizosApiService
-        .obtenerHechizos("/" + hechizo.slug)
-        .subscribe((data: any) => {
-          this.dataSource = new MatTableDataSource<any>(this.monstruos);
-        });
-    }
-    this.dataSource.data = this.dataSource.data;
-    this.table.renderRows();
-    this.cargado = true;
-  }
+  
 
   Buscar(){
     this.filtros = "";

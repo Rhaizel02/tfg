@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './menu/menu.component';
-import { HechizosComponent } from './hechizos/hechizos.component';
+import { HechizosComponent } from './wiki/spells/hechizos/hechizos.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -19,12 +19,12 @@ import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { DialogHechizoComponent } from './dialog-hechizo/dialog-hechizo.component';
+import { DialogHechizoComponent } from './wiki/spells/dialog-hechizo/dialog-hechizo.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { PieComponent } from './pie/pie.component';
 import {MatTreeModule} from '@angular/material/tree';
-import { MonstruosComponent } from './monstruos/monstruos.component';
+import { MonstruosComponent } from './wiki/monsters/monstruos/monstruos.component';
 
 @NgModule({
   declarations: [
