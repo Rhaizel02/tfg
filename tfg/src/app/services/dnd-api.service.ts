@@ -59,10 +59,7 @@ export class DndApiService {
     return this.http
       .get(`${this.apiUrl}documents/?fields=title,slug`)
       .pipe(map((data: any) => {
-        let consulta: Consulta = {
-          count: data.count,
-          next: data.next,
-          previous: data.previous,
+        let consulta: any = {
           results: data.results
         };
         return consulta;

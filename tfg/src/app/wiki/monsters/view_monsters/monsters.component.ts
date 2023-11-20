@@ -68,7 +68,7 @@ export class MonstersComponent {
   }
 
   cargarMonstruos() {
-    this.query = "?page=" + this.currentPage + "&page_size=" + this.pageSize + this.filtros;
+    this.query = "?page=" + this.currentPage + "&limit=" + this.pageSize + this.filtros;
     this.api.obtenerMonstruos(this.query).subscribe(consulta => {
       this.monstruos = consulta;
       this.dataSource = new MatTableDataSource<any>(this.monstruos.results);
@@ -89,11 +89,16 @@ export class MonstersComponent {
       this.filtros += "&type=" + this.categoria;
     }
     if (this.cr != -1) {
-      this.filtros += "&spell_level=" + this.cr;
+      this.filtros += "&cr=" + this.cr;
     }
     if (this.libro_elegido != "") {
       this.filtros += "&document__slug=" + this.libro_elegido;
     }
+    this.cargarMonstruos();
+  }
+
+  ordenar(s : string){
+    this.filtros += "&ordering=" + s;
     this.cargarMonstruos();
   }
 

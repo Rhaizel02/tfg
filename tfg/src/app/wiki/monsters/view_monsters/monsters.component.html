@@ -59,27 +59,27 @@
     <div class="mat-elevation-z8 w-5/6 bottom-1">
       <table mat-table #table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
         <ng-container matColumnDef="name">
-          <th mat-sort-header="name" mat-header-cell *matHeaderCellDef>Name</th>
+          <th mat-header-cell *matHeaderCellDef>Name</th>
           <td mat-cell *matCellDef="let monster">{{ monster.name }}</td>
         </ng-container>
 
         <ng-container matColumnDef="cr">
-          <th mat-sort-header="cr" mat-header-cell *matHeaderCellDef>Cr</th>
+          <th mat-header-cell *matHeaderCellDef>Cr</th>
           <td mat-cell *matCellDef="let monster">{{ monster.cr }}</td>
         </ng-container>
 
         <ng-container matColumnDef="type">
-          <th mat-sort-header="type" mat-header-cell *matHeaderCellDef>Type</th>
+          <th mat-header-cell *matHeaderCellDef>Type</th>
           <td mat-cell *matCellDef="let monster">{{ monster.type }}</td>
         </ng-container>
 
         <ng-container matColumnDef="alignment">
-          <th mat-sort-header="alignment" mat-header-cell *matHeaderCellDef>Alignment</th>
+          <th mat-header-cell *matHeaderCellDef>Alignment</th>
           <td mat-cell *matCellDef="let monster">{{ monster.alignment }}</td>
         </ng-container>
 
         <ng-container matColumnDef="book">
-          <th mat-sort-header="book" mat-header-cell *matHeaderCellDef>Source Book</th>
+          <th mat-header-cell *matHeaderCellDef>Source Book</th>
           <td mat-cell *matCellDef="let monster">{{ monster.document__title }}</td>
         </ng-container>
 
