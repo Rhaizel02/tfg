@@ -1,5 +1,60 @@
-<div class="text-center">
+<!--<div class="text-center">
 <h1> {{ data.name }}</h1>
 <ng-container *ngIf="data.img_main">
     <img src='{{ data.img_main }}'>
 </ng-container>
+-->
+
+<mat-card>
+  <mat-card-header class="flex justify-center text-center pb-1">
+    <mat-card-title
+      >{{ monster.name }} (CR {{ monster.challenge_rating }})</mat-card-title
+    >
+    <mat-card-subtitle
+      >{{ monster.size }} {{ monster.type }} -
+      {{ monster.alignment }}</mat-card-subtitle
+    >
+  </mat-card-header>
+
+  <mat-divider></mat-divider>
+
+  <ng-container *ngIf="monster.img_main"
+    ><img mat-card-image [src]="monster.img_main" alt="{{ monster.name }}"
+  /></ng-container>
+  <mat-card-content>
+    <p>
+      <strong>Armor Class:</strong> {{ monster.armor_class }} ({{
+        monster.armor_desc
+      }})
+    </p>
+    <p>
+      <strong>Hit Points:</strong> {{ monster.hit_points }} ({{
+        monster.hit_dice
+      }})
+    </p>
+    <p>
+      <strong>Speed:</strong> Walk {{ monster.speed.walk }} ft., Swim
+      {{ monster.speed.swim }} ft.
+    </p>
+    <p>
+      <strong>Abilities:</strong> Str {{ monster.strength }}, Dex
+      {{ monster.dexterity }}, Con {{ monster.constitution }}, Int
+      {{ monster.intelligence }}, Wis {{ monster.wisdom }}, Cha
+      {{ monster.charisma }}
+    </p>
+    <p><strong>Senses:</strong> {{ monster.senses }}</p>
+    <p><strong>Languages:</strong> {{ monster.languages }}</p>
+    <p><strong>Special Abilities:</strong></p>
+    <ul>
+      <li *ngFor="let ability of monster.special_abilities">
+        <strong>{{ ability.name }}</strong>: {{ ability.desc }}
+      </li>
+    </ul>
+  </mat-card-content>
+
+  <mat-divider></mat-divider>
+
+  <mat-card-actions>
+    <button mat-button>Save</button>
+  </mat-card-actions>
+</mat-card>

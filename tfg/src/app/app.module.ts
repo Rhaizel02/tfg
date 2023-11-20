@@ -27,6 +27,7 @@ import {MatTreeModule} from '@angular/material/tree';
 import { MonstersComponent } from './wiki/monsters/view_monsters/monsters.component';
 import { RacesComponent } from './wiki/races/races/races.component';
 import { DialogmonsterComponent } from './wiki/monsters/dialog_monster/dialogmonster/dialogmonster.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { DialogmonsterComponent } from './wiki/monsters/dialog_monster/dialogmon
     MatDialogModule,
     MatTooltipModule,
     MatTreeModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
