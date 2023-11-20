@@ -36,11 +36,11 @@
     </mat-form-field>
 
     <mat-form-field class="mx-3 w-1/6">
-      <mat-label>Select monster's alignment</mat-label>
-      <mat-select [(value)]="alineamiento">
-        <mat-option value="">-Level-</mat-option>
-        <mat-option *ngFor="let a of alineamientos" value="{{ a }}">{{
-          a
+      <mat-label>Select monster's source book</mat-label>
+      <mat-select [(value)]="libro_elegido">
+        <mat-option value="">-Book-</mat-option>
+        <mat-option *ngFor="let libro of libros.results" value="{{ libro.slug }}">{{
+          libro.title
         }}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -85,7 +85,7 @@
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr class="hover:cursor-pointer hover:bg-gray-50" mat-row *matRowDef="let row; columns: displayedColumns"
-          matTooltip="Info about the monster" [matTooltipPosition]="'below'"></tr>
+        matTooltip="Info about the monster" [matTooltipPosition]="'below'" (click)="abrirDialog(row)"></tr>
       </table>
 
       <mat-paginator #paginator [pageSizeOptions]="[20, 50, 75]" [length]="this.monstruos.count" showFirstLastButtons

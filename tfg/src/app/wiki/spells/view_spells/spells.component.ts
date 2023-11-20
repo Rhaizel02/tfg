@@ -1,13 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DndApiService } from '../../../services/dnd-api.service';
-import { Sort } from '@angular/material/sort';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { DialogHechizoComponent } from '../dialog-hechizo/dialog-hechizo.component';
 import { MatDialog } from '@angular/material/dialog';
-import { catchError, map, startWith, switchMap } from 'rxjs/operators';
-import { merge, Observable, of as observableOf, pipe } from 'rxjs';
 
 @Component({
   selector: 'app-spells',

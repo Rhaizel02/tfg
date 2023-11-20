@@ -1,1 +1,5 @@
-<p>dialogmonster works!</p>
+<div class="text-center">
+<h1> {{ data.name }}</h1>
+<ng-container *ngIf="data.img_main">
+    <img src='{{ data.img_main }}'>
+</ng-container>

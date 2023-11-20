@@ -54,4 +54,19 @@ export class DndApiService {
       });
     return tipos;
   }
+
+  obtenerLibros(): Observable<Consulta>{
+    return this.http
+      .get(`${this.apiUrl}documents/?fields=title,slug`)
+      .pipe(map((data: any) => {
+        let consulta: Consulta = {
+          count: data.count,
+          next: data.next,
+          previous: data.previous,
+          results: data.results
+        };
+        return consulta;
+      })
+      );
+  }
 }

@@ -4,6 +4,7 @@ import { DndApiService } from '../../../services/dnd-api.service';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
 import { Consulta } from '../../../interfaces/consulta';
+import { DialogmonsterComponent } from '../dialog_monster/dialogmonster/dialogmonster.component';
 
 @Component({
   selector: 'app-monsters',
@@ -15,6 +16,7 @@ export class MonstersComponent {
   @ViewChild(MatTable, { static: false }) table!: MatTable<any>;
   // Variable que almacenan los monstruos 
   monstruos: Consulta = { count: 0, next: '', previous: '', results: [] };
+  libros: Consulta = { count: 0, next: '', previous: '', results: []}
   constructor(
     private api: DndApiService,
     private dialog: MatDialog
@@ -24,10 +26,9 @@ export class MonstersComponent {
   nombre: string = '';
   cr : number=-1;
   categoria : string = '';
-  alineamiento : string = '';
+  libro_elegido : string = '';
   crs = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14];
   categorias: string[] = [];
-  alineamientos = ['any alignment','any chaotic alignment','any evil alignment','any good alignment','any lawful alignment','any non-good alignment','any non-lawful alignment','chaotic evil','chaotic good','chaotic neutral','lawful evil','lawful good','lawful neutral','neutral','neutral evil','neutral good','unaligned'];
   displayedColumns: string[] = [
     'name',
     'cr',
@@ -42,6 +43,7 @@ export class MonstersComponent {
   cargado = false;
 
   filtros: string = '';
+  query: string = '';
 
 
   ngOnInit(): void {
@@ -50,6 +52,7 @@ export class MonstersComponent {
 
   ngAfterViewInit() {
     this.cargarTiposMonstruos();
+    this.cargarLibros();
     this.cargarMonstruos();
   }
 
@@ -57,9 +60,16 @@ export class MonstersComponent {
     this.categorias = this.api.obtenerTiposMonstruos();
   }
 
+  cargarLibros(){
+    this.api.obtenerLibros().subscribe(consulta => {
+      this.libros = consulta;
+      console.log(this.libros);
+    });
+  }
+
   cargarMonstruos() {
-    this.filtros = "?limit=" + this.pageSize + "&page="+this.currentPage;
-    this.api.obtenerMonstruos(this.filtros).subscribe(consulta => {
+    this.query = "?page=" + this.currentPage + "&page_size=" + this.pageSize + this.filtros;
+    this.api.obtenerMonstruos(this.query).subscribe(consulta => {
       this.monstruos = consulta;
       this.dataSource = new MatTableDataSource<any>(this.monstruos.results);
       this.dataSource.data = this.dataSource.data;
@@ -81,10 +91,17 @@ export class MonstersComponent {
     if (this.cr != -1) {
       this.filtros += "&spell_level=" + this.cr;
     }
-    if (this.alineamiento != "") {
-      this.filtros += "&alignment=" + this.alineamiento;
+    if (this.libro_elegido != "") {
+      this.filtros += "&document__slug=" + this.libro_elegido;
     }
     this.cargarMonstruos();
+  }
+
+  abrirDialog(entrada: any) {
+    const dialogRef = this.dialog.open(DialogmonsterComponent, {
+      width: '400px',
+      data: entrada,
+    });
   }
 
   pageChanged(event: PageEvent) {
