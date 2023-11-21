@@ -8,5 +8,5 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./dialog-hechizo.component.css']
 })
 export class DialogHechizoComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public spell: any) { }
 }

@@ -18,7 +18,7 @@
     <mat-form-field class="mx-3 w-1/6">
       <mat-label>Select monster's type</mat-label>
       <mat-select [(value)]="categoria_seleccionada">
-        <mat-option value="">-Class-</mat-option>
+        <mat-option value="">-Type-</mat-option>
         <mat-option *ngFor="let categoria of categorias" value="{{ categoria }}">{{
           categoria
         }}</mat-option>

@@ -11,10 +11,6 @@ export class DndApiService {
 
   constructor(private http: HttpClient) {}
 
-  obtenerHechizos(s: string) {
-    return this.http.get(`${this.apiUrl}spells${s}`);
-  }
-
   obtenerClasesMagicas() {
     return this.http.get(`${this.apiUrl}spelllist/`);
   }
@@ -25,6 +21,21 @@ export class DndApiService {
 
   obtenerRazas(s: string) {
     return this.http.get(`${this.apiUrl}races${s}`);
+  }
+
+  obtenerConjuros(s: string) {
+    console.log(this.apiUrl+"spells"+s);
+    return this.http.get(`${this.apiUrl}spells${s}`).pipe(
+      map((data: any) => {
+        let consulta: Consulta = {
+          count: data.count,
+          next: data.next,
+          previous: data.previous,
+          results: data.results
+        };
+        return consulta;
+      })
+    );
   }
 
   obtenerMonstruos(s: string): Observable<Consulta> {

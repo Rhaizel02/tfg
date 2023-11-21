@@ -5,6 +5,8 @@ import { ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { DialogHechizoComponent } from '../dialog-hechizo/dialog-hechizo.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Consulta } from '../../../interfaces/consulta';
+import { ParesFiltro } from 'src/app/interfaces/pares-filtro';
 
 @Component({
   selector: 'app-spells',
@@ -15,31 +17,31 @@ export class SpellsComponent implements OnInit {
   public dataSource = new MatTableDataSource<any>();
   @ViewChild(MatTable, { static: false }) table!: MatTable<any>;
   // Variables que almacenan los hechizos y sus detalles
-  hechizos: any[] = [];
-
+  hechizos: Consulta = { count: 0, next: '', previous: '', results: [] };
   // Variables para el filtrado
   nombre: string = '';
   displayedColumns: string[] = ['nombre', 'level', 'range'];
   escuelas = ['illusion', 'abjuration', 'conjuration', 'divination', 'enchantment', 'evocation', 'necromancy', 'transmutation'];
   escuela_seleccionada: string = "";
   niveles: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  nivel_seleccionado: number = -1;
+  nivel_seleccionado: string = "";
   clases: string[] = [];
   clase_seleccionada: string = "";
 
   // Variables para la paginación
-  pageSize: number = 10;
+  pageSize: number = 25;
   currentPage: number = 1;
   total: number = 0;
   cargado = false;
 
-  parametros: string = "";
+  pares: ParesFiltro[] = [];
   filtros: string = "";
+  query: string = "";
 
-  constructor(private hechizosApiService: DndApiService, private dialog: MatDialog) { }
+  constructor(private api: DndApiService, private dialog: MatDialog) { }
 
   obtenerClases() {
-    this.hechizosApiService.obtenerClasesMagicas().subscribe((data: any) => {
+    this.api.obtenerClasesMagicas().subscribe((data: any) => {
       for (const clase of data.results) {
         this.clases.push(clase.name);
       }
@@ -53,17 +55,8 @@ export class SpellsComponent implements OnInit {
     });
   }
 
-  cancelarHechizos() {
-    this.hechizos = [];
-    this.dataSource.data = [];
-  }
-
   ngAfterViewInit(): void {
     this.obtenerClases();
-    // esperar medio segundo
-    setTimeout(() => {
-      this.cargarHechizos();
-    }, 1000);
     this.cargarHechizos();
   }
 
@@ -72,48 +65,33 @@ export class SpellsComponent implements OnInit {
   }
 
   cargarHechizos() {
-    this.parametros = "?limit=" + this.pageSize + "&page=" + this.currentPage+this.filtros;
-    this.hechizosApiService.obtenerHechizos("/" + this.parametros).subscribe((data: any) => {
-      this.hechizos = data.results;
-      if (this.total != data.count)
-        this.total = data.count;
-    });
-    if(this.hechizos.length > 0)
-      this.cargarDetallesHechizos();
-    else{
-      this.dataSource = new MatTableDataSource<any>;
+    this.query =
+      '?page=' + this.currentPage + '&limit=' + this.pageSize + this.filtros;
+    this.api.obtenerConjuros(this.query).subscribe((consulta) => {
+      this.hechizos = consulta;
+      this.dataSource = new MatTableDataSource<any>(this.hechizos.results);
       this.dataSource.data = this.dataSource.data;
       this.table.renderRows();
-    }
-  }
-
-  cargarDetallesHechizos() {
-    for (const hechizo of this.hechizos) {
-      this.hechizosApiService
-        .obtenerHechizos("/" + hechizo.slug)
-        .subscribe((data: any) => {
-          this.dataSource = new MatTableDataSource<any>(this.hechizos);
-        });
-    }
-    this.dataSource.data = this.dataSource.data;
-    this.table.renderRows();
-    this.cargado = true;
+      this.cargado = true;
+    });
   }
 
   Buscar(){
     this.filtros = "";
     this.currentPage = 1;
-    if (this.nombre != "") {
-      this.filtros += "&search=" + this.nombre;
-    }
-    if (this.escuela_seleccionada != "") {
-      this.filtros += "&school=" + this.escuela_seleccionada;
-    }
-    if (this.nivel_seleccionado != -1) {
-      this.filtros += "&spell_level=" + this.nivel_seleccionado;
-    }
-    if (this.clase_seleccionada != "") {
-      this.filtros += "&spell_lists=" + this.clase_seleccionada;
+
+    this.pares = [
+      { nombre: 'search', valor: this.nombre },
+      { nombre: 'school', valor: this.escuela_seleccionada },
+      { nombre: 'level', valor: this.nivel_seleccionado },
+      { nombre: 'spell_lists', valor: this.clase_seleccionada },
+    ];
+
+    for(const par of this.pares){
+      if(par.valor != ""){
+        console.log(par.nombre + " " + par.valor);
+        this.filtros += "&" + par.nombre + "=" + par.valor;
+      }
     }
     this.cargarHechizos();
   }

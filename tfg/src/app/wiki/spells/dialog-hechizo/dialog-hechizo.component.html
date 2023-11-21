@@ -1,19 +1,15 @@
-<div class="m-2.5">
-  <h2 class="text-center">{{ data.name }}</h2>
-  <div *ngIf="data.spell_level == 0; then content; else other_content"></div>
-  <ng-template #content><p class="text-center">Cantrip</p></ng-template>
-  <ng-template #other_content
-    ><p class="text-center">Spell level {{ data.spell_level }}</p></ng-template
-  >
-  <mat-divider></mat-divider>
-
-  <p><strong>Components: </strong>{{ data.components }}</p>
-  <p><strong>Casting time: </strong>{{ data.casting_time }}</p>
-  <p><strong>Range: </strong>{{ data.range }}</p>
-  <p><strong>Duration: </strong>{{ data.duration }}</p>
-  <p><strong>Magic School: </strong>{{ data.school }}</p>
-  <p><strong>Classes: </strong> {{ data.dnd_class }}</p>
-
-  <mat-divider></mat-divider>
-  <p>{{ data.desc }}</p>
-</div>
+<mat-card>
+  <mat-card-header class="flex justify-center text-center pb-1">
+    <mat-card-title>{{ spell.name }}</mat-card-title>
+    <mat-card-subtitle>{{ spell.level }} - {{ spell.school }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{ spell.desc }}</p>
+    <p *ngIf="spell.higher_level"><strong>At Higher Levels:</strong> {{ spell.higher_level }}</p>
+    <p><strong>Range:</strong> {{ spell.range }}</p>
+    <p><strong>Components:</strong> {{ spell.components }} <ng-container *ngIf="spell.material"> ({{spell.material }})</ng-container></p>
+    <p><strong>Casting Time:</strong> {{ spell.casting_time }}</p>
+    <p><strong>Duration:</strong> {{ spell.duration }}</p>
+    <p><strong>Classes:</strong> {{ spell.dnd_class }}</p>
+  </mat-card-content>
+</mat-card>
