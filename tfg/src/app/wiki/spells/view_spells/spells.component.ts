@@ -50,7 +50,7 @@ export class SpellsComponent implements OnInit {
 
   abrirDialog(entrada: any) {
     const dialogRef = this.dialog.open(DialogHechizoComponent, {
-      width: '400px',
+      width: '700px',
       data: entrada, // Pasamos la entrada seleccionada al diálogo
     });
   }
@@ -83,7 +83,7 @@ export class SpellsComponent implements OnInit {
     this.pares = [
       { nombre: 'search', valor: this.nombre },
       { nombre: 'school', valor: this.escuela_seleccionada },
-      { nombre: 'level', valor: this.nivel_seleccionado },
+      { nombre: 'spell_level', valor: this.nivel_seleccionado },
       { nombre: 'spell_lists', valor: this.clase_seleccionada },
     ];
 

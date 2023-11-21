@@ -28,6 +28,10 @@ import { MonstersComponent } from './wiki/monsters/view_monsters/monsters.compon
 import { RacesComponent } from './wiki/races/races/races.component';
 import { DialogmonsterComponent } from './wiki/monsters/dialog_monster/dialogmonster/dialogmonster.component';
 import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { RaceComponent } from './wiki/races/race/race/race.component'
+import {MatList, MatListModule} from '@angular/material/list';
+
 
 @NgModule({
   declarations: [
@@ -40,6 +44,8 @@ import {MatCardModule} from '@angular/material/card';
     MonstersComponent,
     RacesComponent,
     DialogmonsterComponent,
+    RaceComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -63,6 +69,8 @@ import {MatCardModule} from '@angular/material/card';
     MatTooltipModule,
     MatTreeModule,
     MatCardModule,
+    MatGridListModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

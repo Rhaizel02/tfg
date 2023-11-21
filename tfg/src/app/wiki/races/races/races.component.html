@@ -1,1 +1,6 @@
-<p>view-races works!</p>
+<mat-list>
+    <mat-list-item *ngFor="let race of this.races.results" (click)="RaceDetail(race.slug)">
+      {{ race.name }} - {{ race.desc }}
+    </mat-list-item>
+  </mat-list>
+  

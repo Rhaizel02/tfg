@@ -1,0 +1,28 @@
+<div class="flex justify-center">
+<mat-card class="w-1/2">
+    <div class="text-center">
+    <mat-card-title>{{ race.name }}</mat-card-title>
+    <mat-card-subtitle>Traits and Characteristics</mat-card-subtitle>
+</div>
+    <mat-card-content>
+      <p><span [innerHTML]="race.asi_desc"></span></p>
+      <p><strong>Age:</strong> <span [innerHTML]="race.age"></span></p>
+      <p><strong>Alignment:</strong> <span [innerHTML]="race.alignment"></span></p>
+      <p><strong>Size:</strong> {{ race.size }}</p>
+      <p><strong>Speed:</strong> <span [innerHTML]="race.speed_desc"></span></p>
+      <p><strong>Languages:</strong> <span [innerHTML]="race.languages"></span></p>
+      <p><strong>Vision:</strong> <span [innerHTML]="race.vision"></span></p>
+      <p><strong>Traits:</strong> <span [innerHTML]="race.traits"></span></p>
+  
+      <mat-card *ngIf="race.subraces" class="subrace-card">
+        <mat-card-title>Subraces</mat-card-title>
+        <mat-card-content>
+          <div *ngFor="let subrace of race.subraces">
+            <p><strong>Name:</strong> {{ subrace.name }}</p>
+            <p [innerHTML]="subrace.desc"></p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-card-content>
+  </mat-card>
+  </div>
