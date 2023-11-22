@@ -1,0 +1,58 @@
+<div class="bg-gray-100">
+  <div class="text-center pt-1">
+    <h1 class="mat-headline-2">D&D Dice Roller</h1>
+  </div>
+  <div class="grid grid-cols-2 gap-1 px-20">
+    <div class="text-center">
+      <h2 class="mat-headline-4">Configure your rolls</h2>
+      <div>
+        <mat-form-field>
+            <table mat-table [dataSource]="entrada" class="mat-elevation-z8">
+                <!-- Position Column -->
+                <ng-container matColumnDef="no">
+                  <th mat-header-cell *matHeaderCellDef>No.</th>
+                  <td mat-cell *matCellDef="let element">{{element.no}}</td>
+                </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="dice">
+                  <th mat-header-cell *matHeaderCellDef>Dice</th>
+                  <td mat-cell *matCellDef="let element">{{element.dice}}</td>
+                </ng-container>
+              
+                <!-- Weight Column -->
+                <ng-container matColumnDef="modifier">
+                  <th mat-header-cell *matHeaderCellDef>Modifier</th>
+                  <td mat-cell *matCellDef="let element">{{element.modifier}}</td>
+                </ng-container>
+              
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="advantage">
+                  <th mat-header-cell *matHeaderCellDef>Advantage</th>
+                  <td mat-cell *matCellDef="let element">{{element.advantage}}</td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="text-center">
+      <h2 class="mat-headline-4">Dice Rolls Log</h2>
+      <textarea class="w-1/2 h-52" matInput cdk-scrollable readonly></textarea>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 gap-2 pb-4">
+    <div class="text-end">
+      <button mat-raised-button class="w-1/6" color="primary">
+        <mat-icon>restart_alt</mat-icon>Reset
+      </button>
+    </div>
+    <div class="text-left">
+      <button mat-raised-button class="w-1/6" color="accent">
+        <mat-icon>casino</mat-icon>Roll!
+      </button>
+    </div>
+  </div>
+</div>

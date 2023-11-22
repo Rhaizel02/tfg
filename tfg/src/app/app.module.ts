@@ -31,6 +31,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { RaceComponent } from './wiki/races/race/race/race.component'
 import {MatList, MatListModule} from '@angular/material/list';
+import { DicesComponent } from './tools/dices/dices/dices.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import {MatList, MatListModule} from '@angular/material/list';
     RacesComponent,
     DialogmonsterComponent,
     RaceComponent,
+    DicesComponent,
     
   ],
   imports: [
