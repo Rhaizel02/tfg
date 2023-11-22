@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DicesComponent } from './dices.component';
 
 describe('DicesComponent', () => {

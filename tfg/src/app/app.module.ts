@@ -32,6 +32,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { RaceComponent } from './wiki/races/race/race/race.component'
 import {MatList, MatListModule} from '@angular/material/list';
 import { DicesComponent } from './tools/dices/dices/dices.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { DicesComponent } from './tools/dices/dices/dices.component';
     MatCardModule,
     MatGridListModule,
     MatListModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
