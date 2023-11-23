@@ -1,8 +1,8 @@
 <div class="text-center">
   <h1 class="">List of Spells</h1>
 
-  <div class="flex-row">
-    <mat-form-field class="mx-3 w-1/6">
+  <div class="flex flex-col md:flex-row justify-center items-center md:items-end">
+    <mat-form-field class="mx-2 my-1 md:mx-3 w-full md:w-1/6">
       <mat-label>General Search...</mat-label>
       <input matInput type="text" [(ngModel)]="nombre" />
       <button *ngIf="nombre" matSuffix mat-icon-button aria-label="Clear" (click)="nombre = ''">
@@ -10,48 +10,44 @@
       </button>
     </mat-form-field>
 
-    <mat-form-field class="mx-3 w-1/6">
+    <mat-form-field class="mx-2 my-1 md:mx-3 w-full md:w-1/6">
       <mat-label>Select the class</mat-label>
       <mat-select [(value)]="clase_seleccionada">
         <mat-option value="">-Class-</mat-option>
-        <mat-option *ngFor="let clase of clases" value="{{ clase }}">{{
-          clase.charAt(0).toUpperCase()+clase.slice(1)
-          }}</mat-option>
+        <mat-option *ngFor="let clase of clases" value="{{ clase }}">
+          {{ clase.charAt(0).toUpperCase() + clase.slice(1) }}
+        </mat-option>
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="mx-3 w-1/6">
+    <mat-form-field class="mx-2 my-1 md:mx-3 w-full md:w-1/6">
       <mat-label>Select the magic school</mat-label>
       <mat-select [(value)]="escuela_seleccionada">
         <mat-option value="">-School-</mat-option>
-        <mat-option *ngFor="let escuela of escuelas" value="{{ escuela }}">{{
-          escuela.charAt(0).toUpperCase()+escuela.slice(1)
-          }}</mat-option>
+        <mat-option *ngFor="let escuela of escuelas" value="{{ escuela }}">
+          {{ escuela.charAt(0).toUpperCase() + escuela.slice(1) }}
+        </mat-option>
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="mx-3 w-1/6">
+    <mat-form-field class="mx-2 my-1 md:mx-3 w-full md:w-1/6">
       <mat-label>Select the spell's level</mat-label>
       <mat-select [(value)]="nivel_seleccionado">
         <mat-option value="">-Level-</mat-option>
-        <mat-option *ngFor="let nivel of niveles" value="{{ nivel }}">{{
-          nivel
-          }}</mat-option>
+        <mat-option *ngFor="let nivel of niveles" value="{{ nivel }}">
+          {{ nivel }}
+        </mat-option>
       </mat-select>
     </mat-form-field>
 
-    <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="Buscar()">
+    <button mat-fab color="primary" aria-label="Example icon button with a search icon" (click)="Buscar()">
       <mat-icon>search</mat-icon>
     </button>
   </div>
-  <br />
-  <!-- <div *ngIf="!cargado">
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-  </div>
--->
-  <br />
-  <div class="flex justify-center items-center">
-    <div class="mat-elevation-z8 w-5/6 bottom-1">
+  <br/>
+  <br/>
+  <div class="flex justify-center items-center mt-4">
+    <div class="mat-elevation-z8 w-full md:w-5/6 mb-4">
       <table mat-table #table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
         <ng-container matColumnDef="nombre">
           <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -73,8 +69,7 @@
           matTooltip="Info about the spell" [matTooltipPosition]="'below'" (click)="abrirDialog(row)"></tr>
       </table>
 
-      <mat-paginator #paginator [pageSizeOptions]="[25, 50, 75]" [length]="this.hechizos.count" showFirstLastButtons
-        aria-label="Select page of spells" (page)=pageChanged($event);>
+      <mat-paginator #paginator [pageSizeOptions]="[25, 50, 75]" [length]="this.hechizos.count" showFirstLastButtons aria-label="Select page of spells" (page)=pageChanged($event);>
       </mat-paginator>
     </div>
   </div>

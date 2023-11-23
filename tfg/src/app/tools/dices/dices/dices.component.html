@@ -2,11 +2,11 @@
   <div class="text-center pt-1">
     <h1 class="mat-headline-2">D&D Dice Roller</h1>
   </div>
-  <div class="grid grid-cols-2 gap-1 px-32">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-1 px-4 md:px-32">
     <div class="text-center">
       <h2 class="mat-headline-4">Configure your rolls</h2>
       <div class="flex justify-center">
-        <div class="w-2/3">
+        <div class="w-full md:w-2/3">
           <table mat-table [dataSource]="entrada" class="mat-elevation-z8 w-full">
             <ng-container matColumnDef="no">
               <th mat-header-cell *matHeaderCellDef class="w-1/6">No.</th>
@@ -47,7 +47,7 @@
           </table>
         </div>
       </div>
-      <div class="pt-3">
+      <div class="pt-3 flex justify-center space-x-2">
         <button mat-raised-button color="secondary" (click)="removeRow()">
           <mat-icon>remove</mat-icon>Remove Roll
         </button>
@@ -58,17 +58,17 @@
     </div>
     <div class="text-center">
       <h2 class="mat-headline-4">Dice Rolls Log</h2>
-      <textarea class="w-1/2 h-52" matInput cdk-scrollable readonly ngModel={{log}}></textarea>
+      <textarea class="w-3/4 md:w-1/2 h-52" matInput cdk-scrollable readonly ngModel={{log}}></textarea>
     </div>
   </div>
-  <div class="grid grid-cols-2 gap-2 pb-4">
-    <div class="text-end">
-      <button mat-raised-button class="w-1/6" color="primary" (click)="reset()">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pb-4 px-4 md:px-32">
+    <div class="text-center md:text-end">
+      <button mat-raised-button class="w-3/4 md:w-1/6" color="primary" (click)="reset()">
         <mat-icon>restart_alt</mat-icon>Reset
       </button>
     </div>
-    <div class="text-left">
-      <button mat-raised-button class="w-1/6" color="accent" (click)="roll()">
+    <div class="text-center md:text-left">
+      <button mat-raised-button class="w-3/4 md:w-1/6" color="accent" (click)="roll()">
         <mat-icon>casino</mat-icon>Roll!
       </button>
     </div>
