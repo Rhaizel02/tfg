@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { DndApiService } from 'src/app/services/dnd-api.service';
 import { Router } from '@angular/router';
-import { Consulta } from 'src/app/interfaces/consulta';
-
+import { Libro } from 'src/app/interfaces/libro';
 
 @Component({
   selector: 'app-races',
@@ -11,26 +10,16 @@ import { Consulta } from 'src/app/interfaces/consulta';
 })
 export class RacesComponent {
   races: any[] = [];
-  libros: any[] = [];
-  libros_slug: string[] = []; 
-  libros_title: string[] = [];
+  libros: Libro[] = [];
 
   constructor(private api: DndApiService, private router: Router) {}
 
   ngOnInit() {
 
     this.libros = this.api.obtenerLibrosporRazas();
-
-    this.libros.forEach(element => {
-      this.libros_slug.push(element.slug);
-      this.libros_title.push(element.title); 
-      console.log(element.slug);
-    });
-
-    for(let x in this.libros_slug){
-      this.api.obtenerRazasporLibro(x).subscribe((data: any) => {
-        this.races.push(data.results);
-      });
+  console.log(this.libros);
+    for(let x in this.libros){
+      console.log(x);
     }
 
   }
