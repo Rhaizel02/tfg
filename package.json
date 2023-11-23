@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "angular-cli-ghpages": "^1.0.7"
+    "angular-cli-ghpages": "^1.0.7",
+    "marked": "^10.0.0"
   }
 }

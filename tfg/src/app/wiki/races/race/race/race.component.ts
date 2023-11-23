@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DndApiService } from 'src/app/services/dnd-api.service';
+import * as marked from 'marked';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-race',
@@ -9,16 +11,114 @@ import { DndApiService } from 'src/app/services/dnd-api.service';
 })
 export class RaceComponent implements OnInit {
   race: any;
-  constructor(private route: ActivatedRoute, private api: DndApiService) {}
+  raceSlug: any = '';
+  info: SafeHtml[] = [];
+  constructor(
+    private route: ActivatedRoute,
+    private api: DndApiService,
+    private sanitizer: DomSanitizer
+  ) {}
 
-  ngOnInit() {
-    let raceSlug = this.route.snapshot.paramMap.get('raceSlug');
-    if (raceSlug) {
-      this.api.getRaceDetails(raceSlug).subscribe((data) => {
+  ngOnInit(): void {
+    this.raceSlug = this.route.snapshot.paramMap.get('raceSlug');
+  }
+
+  ngAfterViewInit(): void {
+    if (this.raceSlug) {
+      this.api.getRaceDetails(this.raceSlug).subscribe((data) => {
         this.race = data;
+        this.processMarkdown();
       });
-    } else {
-      console.log("not a race: "+raceSlug);
+    }
+  }
+
+  processMarkdown() {
+    this.info.push(
+      this.sanitizer.bypassSecurityTrustHtml(
+        marked.parse(this.race.desc.toString())
+      )
+    );
+    this.info.push(
+      this.sanitizer.bypassSecurityTrustHtml(
+        marked.parse(this.race.asi_desc.toString())
+      )
+    );
+    this.info.push(
+      this.sanitizer.bypassSecurityTrustHtml(
+        marked.parse(this.race.age.toString())
+      )
+    );
+    this.info.push(
+      this.sanitizer.bypassSecurityTrustHtml(
+        marked.parse(this.race.alignment.toString())
+      )
+    );
+    this.info.push(
+      this.sanitizer.bypassSecurityTrustHtml(
+        marked.parse(this.race.speed_desc.toString())
+      )
+    );
+    this.info.push(
+      this.sanitizer.bypassSecurityTrustHtml(
+        marked.parse(this.race.languages.toString())
+      )
+    );
+    this.info.push(
+      this.sanitizer.bypassSecurityTrustHtml(
+        marked.parse(this.race.vision.toString())
+      )
+    );
+    this.info.push(
+      this.sanitizer.bypassSecurityTrustHtml(
+        marked.parse(this.race.traits.toString())
+      )
+    );
+    this.info.push(
+      this.sanitizer.bypassSecurityTrustHtml(
+        marked.parse(
+          '**Source:** <a target=_blank class=text-blue-600 dark:text-blue-500 hover:underline href=' +
+            this.race.document__url +
+            '>' +
+            this.race.document__title +
+            '</a>'
+        )
+      )
+    );
+
+    if (this.race.subraces && Array.isArray(this.race.subraces)) {
+      this.info.push(
+        this.sanitizer.bypassSecurityTrustHtml(
+          marked.parse('### **Subraces**\n')
+        )
+      );
+      for (let subrace of this.race.subraces) {
+        this.info.push(
+          this.sanitizer.bypassSecurityTrustHtml(
+            marked.parse('--- \n **Name:** ' + subrace.name.toString())
+          )
+        );
+        this.info.push(
+          this.sanitizer.bypassSecurityTrustHtml(
+            marked.parse(subrace.asi_desc.toString())
+          )
+        );
+        this.info.push(
+          this.sanitizer.bypassSecurityTrustHtml(
+            marked.parse(subrace.traits.toString())
+          )
+        );
+        this.info.push(
+          this.sanitizer.bypassSecurityTrustHtml(
+            marked.parse(
+              '**Source:** <a target=_blank class=text-blue-600 dark:text-blue-500 hover:underline href=' +
+                subrace.document__url +
+                '>' +
+                subrace.document__title +
+                '</a>'
+            )
+          )
+        );
+      }
     }
   }
 }
