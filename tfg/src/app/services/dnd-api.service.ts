@@ -20,7 +20,21 @@ export class DndApiService {
   }
 
   obtenerRazas() {
-    return this.http.get(`${this.apiUrl}races`).pipe(
+    return this.http.get(`${this.apiUrl}races/`).pipe(
+      map((data: any) => {
+        let consulta: Consulta = {
+          count: data.count,
+          next: data.next,
+          previous: data.previous,
+          results: data.results,
+        };
+        return consulta;
+      })
+    );
+  }
+
+  obtenerRazasporLibro(s : string) {
+    return this.http.get(`${this.apiUrl}races/?document__title=${s}`).pipe(
       map((data: any) => {
         let consulta: Consulta = {
           count: data.count,
@@ -74,12 +88,12 @@ export class DndApiService {
   }
 
   obtenerLibrosporRazas() {
-    let libros: string[] = [];
+    let libros: any[] = [];
     this.http
-      .get(`${this.apiUrl}races/?fields=document__title&limit=10000`)
+      .get(`${this.apiUrl}races/?fields=document__title,document__slug&limit=10000`)
       .subscribe((data: any) => {
-        for (const libro of data.results) {
-          if (!libros.includes(libro.document__title)) libros.push(libro.document__title);
+        for (const libro of data) {
+          if (!libros.includes(libro.results.document__title)) libros.push(libro.results);
         }
       });
     return libros;

@@ -10,18 +10,29 @@ import { Consulta } from 'src/app/interfaces/consulta';
   styleUrls: ['./races.component.css']
 })
 export class RacesComponent {
-  races: Consulta = { count: 0, next: '', previous: '', results: [] };
-  libros: string[] = [];
+  races: any[] = [];
+  libros: any[] = [];
+  libros_slug: string[] = []; 
+  libros_title: string[] = [];
 
   constructor(private api: DndApiService, private router: Router) {}
 
   ngOnInit() {
-    this.api.obtenerRazas().subscribe(data => {
-      this.races = data;
-    });
 
     this.libros = this.api.obtenerLibrosporRazas();
-    console.log(this.libros);
+
+    this.libros.forEach(element => {
+      this.libros_slug.push(element.slug);
+      this.libros_title.push(element.title); 
+      console.log(element.slug);
+    });
+
+    for(let x in this.libros_slug){
+      this.api.obtenerRazasporLibro(x).subscribe((data: any) => {
+        this.races.push(data.results);
+      });
+    }
+
   }
 
   RaceDetail(slug: string) {

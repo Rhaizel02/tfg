@@ -8,14 +8,16 @@
 <div class="grid grid-flow-col">
   <div *ngFor="let libro of libros">
     <h3 class="text-center mat-headline-5 text-blue-300">{{ libro }}</h3>
+    <mat-list>
+      <mat-list-item *ngFor="let race of this.races"
+        (click)="RaceDetail(race.results.slug)"
+      >
+        {{ race.name }} - {{ race.desc }}
+      </mat-list-item>
+    </mat-list>
+    
   </div>
 </div>
 
-<mat-list>
-  <mat-list-item
-    *ngFor="let race of this.races.results"
-    (click)="RaceDetail(race.slug)"
-  >
-    {{ race.name }} - {{ race.desc }}
-  </mat-list-item>
-</mat-list>
+
+
