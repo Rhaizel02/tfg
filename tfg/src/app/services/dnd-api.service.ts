@@ -73,16 +73,16 @@ export class DndApiService {
     return tipos;
   }
 
-  obtenerLibrosRazas() {
-    let tipos: string[] = [];
+  obtenerLibrosporRazas() {
+    let libros: string[] = [];
     this.http
-      .get(`${this.apiUrl}monsters/?fields=type&limit=10000`)
+      .get(`${this.apiUrl}races/?fields=document__title&limit=10000`)
       .subscribe((data: any) => {
-        for (const monstruo of data.results) {
-          if (!tipos.includes(monstruo.type)) tipos.push(monstruo.type);
+        for (const libro of data.results) {
+          if (!libros.includes(libro.document__title)) libros.push(libro.document__title);
         }
       });
-    return tipos;
+    return libros;
   }
 
   obtenerLibros(): Observable<Consulta> {

@@ -11,16 +11,21 @@ import { Consulta } from 'src/app/interfaces/consulta';
 })
 export class RacesComponent {
   races: Consulta = { count: 0, next: '', previous: '', results: [] };
+  libros: string[] = [];
 
-  constructor(private apiService: DndApiService, private router: Router) {}
+  constructor(private api: DndApiService, private router: Router) {}
 
   ngOnInit() {
-    this.apiService.obtenerRazas().subscribe(data => {
+    this.api.obtenerRazas().subscribe(data => {
       this.races = data;
     });
+
+    this.libros = this.api.obtenerLibrosporRazas();
+    console.log(this.libros);
   }
 
   RaceDetail(slug: string) {
     this.router.navigate(['/races/', slug]);
   }
+
 }
