@@ -1,4 +1,4 @@
-<mat-card class="mat-typography">
+<mat-card class="mat-typography" cdk-scrollable>
   <mat-card-header class="flex justify-center text-center pb-1">
     <mat-card-title>{{ spell.name }}</mat-card-title>
     <mat-card-subtitle
@@ -27,16 +27,20 @@
         <p><strong>Classes:</strong> {{ spell.dnd_class }}</p>
         <p *ngIf="spell.ritual !== 'no'"><strong>Ritual:</strong> Yes</p>
         <p *ngIf="spell.school"><strong>School:</strong> {{ spell.school }}</p>
-        <p *ngIf="spell.archetype"><strong>Archetype:</strong> {{ spell.archetype }}</p>
-        <p *ngIf="spell.circles"><strong>Circles:</strong> {{ spell.circles }}</p>
+        <p *ngIf="spell.archetype">
+          <strong>Archetype:</strong> {{ spell.archetype }}
+        </p>
+        <p *ngIf="spell.circles">
+          <strong>Circles:</strong> {{ spell.circles }}
+        </p>
         <p><strong>Source:</strong> {{ spell.document__title }}</p>
         <p *ngIf="spell.page"><strong>Page:</strong> {{ spell.page }}</p>
       </div>
     </div>
   </mat-card-content>
   <mat-divider></mat-divider>
-  <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Close</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Save</button>
-  </mat-dialog-actions>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Close</button>
+      <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Save</button>
+    </mat-dialog-actions>
 </mat-card>

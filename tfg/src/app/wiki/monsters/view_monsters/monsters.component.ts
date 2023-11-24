@@ -30,7 +30,7 @@ export class MonstersComponent {
   displayedColumns: string[] = ['name', 'cr', 'type', 'alignment', 'book'];
 
   // Variables para la paginación
-  pageSize: number = 20;
+  pageSize: number = 25;
   currentPage: number = 1;
   cargado = false;
 

@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card cdk-scrollable>
   <mat-card-header class="flex justify-center text-center pb-1">
     <mat-card-title
       >{{ monster.name }} (CR {{ monster.challenge_rating }})</mat-card-title
@@ -47,7 +47,8 @@
 
   <mat-divider></mat-divider>
 
-  <mat-card-actions>
-    <button mat-button>Save</button>
+  <mat-card-actions align="end">
+    <button mat-button mat-dialog-close>Close</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Save</button>
   </mat-card-actions>
 </mat-card>
