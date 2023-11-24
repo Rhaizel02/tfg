@@ -1,23 +1,26 @@
+<div class="bg-slate-50">
 <div>
   <h1 class="text-center mat-headline-3 pt-4">List of D&D Races</h1>
   <h2 class="text-center mat-headline-4 text-gray-400">
     Choose your character's race
   </h2>
 </div>
-<!--
-<div class="grid grid-flow-col">
+
+<div class="grid grid-flow-col gap-10 mx-10">
   <div *ngFor="let libro of libros">
-    <h3 class="text-center mat-headline-5 text-blue-300">{{ libro }}</h3>
+    <mat-card>
+    <h3 class="text-center mat-headline-5 text-amber-600">{{ libro.title }}</h3>
+    <mat-divider></mat-divider>
     <mat-list>
-      <mat-list-item *ngFor="let race of this.races"
-        (click)="RaceDetail(race.results.slug)"
+      <mat-list-item *ngFor="let race of libro.races"
+        (click)="RaceDetail(race.slug)"
       >
-        {{ race.name }} - {{ race.desc }}
+        <p class="text-center hover:cursor-pointer hover:bg-slate-200"><b>{{ race.name }}</b></p>
       </mat-list-item>
     </mat-list>
-    
+  </mat-card>
   </div>
-</div>-->
+</div>
 
-
+</div>
 

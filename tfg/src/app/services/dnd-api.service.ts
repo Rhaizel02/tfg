@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Consulta } from '../interfaces/consulta';
-import { Libro } from '../interfaces/libro';
 import { Observable, map } from 'rxjs';
 
 @Injectable({
@@ -34,19 +33,6 @@ export class DndApiService {
     );
   }
 
-  obtenerRazasporLibro(s : string) {
-    return this.http.get(`${this.apiUrl}races/?document__title=${s}`).pipe(
-      map((data: any) => {
-        let consulta: Consulta = {
-          count: data.count,
-          next: data.next,
-          previous: data.previous,
-          results: data.results,
-        };
-        return consulta;
-      })
-    );
-  }
 
   obtenerConjuros(s: string) {
     return this.http.get(`${this.apiUrl}spells${s}`).pipe(
@@ -86,18 +72,6 @@ export class DndApiService {
         }
       });
     return tipos;
-  }
-
-  obtenerLibrosporRazas() {
-    let libros: Libro[] = [];
-    this.http
-      .get(`${this.apiUrl}races/?fields=document__title,document__slug&limit=10000`)
-      .subscribe((data: any) => {
-        for (const libro of data.results) {
-          if (!libros.includes(libro.document__slug)) libros.push(libro);
-        }
-      });
-    return libros;
   }
 
   obtenerLibros(): Observable<Consulta> {

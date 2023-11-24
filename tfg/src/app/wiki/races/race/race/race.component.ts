@@ -85,7 +85,7 @@ export class RaceComponent implements OnInit {
       )
     );
 
-    if (this.race.subraces && Array.isArray(this.race.subraces)) {
+    if (this.race.subraces[0].name && Array.isArray(this.race.subraces)) {
       this.info.push(
         this.sanitizer.bypassSecurityTrustHtml(
           marked.parse('### **Subraces**\n')

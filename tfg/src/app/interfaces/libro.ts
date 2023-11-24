@@ -1,4 +1,9 @@
 export interface Libro {
-    slug : string;
-    title : string;
+    title : string
+    races : RaceInfo[];
+}
+export interface RaceInfo {
+    name : string;
+    desc : string;
+    slug : string
 }
