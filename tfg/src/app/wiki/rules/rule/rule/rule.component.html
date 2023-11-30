@@ -1,0 +1,17 @@
+<div class="bg-slate-50">
+<div class="flex justify-center">
+  <mat-card class="w-1/2 my-10">
+    <div class="text-center">
+      <mat-card-title *ngIf="this.rule" class="mat-headline-5">{{
+        this.rule.name
+      }}</mat-card-title>
+      <mat-card-subtitle *ngIf="this.rule">
+        {{ this.rule.parent }}</mat-card-subtitle
+      >
+    </div>
+    <mat-card-content>
+      <div *ngFor="let fragment of ruleInfo" [innerHTML]="fragment"></div>
+    </mat-card-content>
+  </mat-card>
+</div>
+</div>

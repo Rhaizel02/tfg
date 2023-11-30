@@ -3,9 +3,9 @@
     <div class="text-center">
     <mat-card-title class="mat-headline-5 ">{{ this.raceSlug.charAt(0).toUpperCase() + this.raceSlug.slice(1) }}</mat-card-title>
     <mat-card-subtitle>Traits and Characteristics</mat-card-subtitle>
-</div>
+    </div>
     <mat-card-content>
       <div *ngFor="let fragment of info" [innerHTML]="fragment"></div>
     </mat-card-content>
   </mat-card>
-  </div>
+</div>

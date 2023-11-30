@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Consulta } from '../interfaces/consulta';
 import { Observable, map } from 'rxjs';
+import { RuleInterface } from '../interfaces/rule-interface';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +33,6 @@ export class DndApiService {
       })
     );
   }
-
 
   obtenerConjuros(s: string) {
     return this.http.get(`${this.apiUrl}spells${s}`).pipe(
@@ -85,7 +85,23 @@ export class DndApiService {
     );
   }
 
-  getRaceDetails(s: string){
+  getRaceDetails(s: string) {
     return this.http.get(`${this.apiUrl}races/${s}`);
+  }
+
+  getRules() {
+    let rules: RuleInterface[] = [];
+    this.http
+      .get(`${this.apiUrl}sections/?ordering=parent`)
+      .subscribe((data: any) => {
+        for (const rule of data.results) {
+          rules.push({ name: rule.name, slug: rule.slug, parent: rule.parent });
+        }
+      });
+    return rules;
+  }
+
+  getRuleDetails(s: string) {
+    return this.http.get(`${this.apiUrl}sections/${s}`);
   }
 }
