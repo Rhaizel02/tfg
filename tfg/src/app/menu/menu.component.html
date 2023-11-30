@@ -1,8 +1,13 @@
 <div class="bg-white">
   <mat-toolbar>
     <a routerLink="/home"><mat-icon class="pt-1">home</mat-icon>Home &nbsp;</a>
-    <a routerLink="/contact"><mat-icon class="pt-1">contact_page</mat-icon>Contact &nbsp;</a>
-    <button [matMenuTriggerFor]="wikis"><mat-icon class="pt-1">book</mat-icon>Wiki<mat-icon>arrow_drop_down</mat-icon>&nbsp;</button>
+    <a routerLink="/contact"
+      ><mat-icon class="pt-1">contact_page</mat-icon>Contact &nbsp;</a
+    >
+    <button [matMenuTriggerFor]="wikis">
+      <mat-icon class="pt-1">book</mat-icon
+      >Wiki<mat-icon>arrow_drop_down</mat-icon>&nbsp;
+    </button>
     <mat-menu #wikis="matMenu">
       <button routerLink="/spells" mat-menu-item>
         <span>Spells</span>
@@ -16,8 +21,24 @@
       <button routerLink="/rules" mat-menu-item>
         <span>Rules</span>
       </button>
+      <button [matMenuTriggerFor]="character" mat-menu-item>Character</button>
+      <mat-menu #character="matMenu">
+        <button routerLink="/classes" mat-menu-item>
+          <span>Classes</span>
+        </button>
+        <button routerLink="/backgrounds" mat-menu-item>
+          <span>Backgrounds</span>
+        </button>
+
+        <button routerLink="/feats" mat-menu-item>
+          <span>Feats</span>
+        </button>
+      </mat-menu>
     </mat-menu>
-    <button [matMenuTriggerFor]="tools"><mat-icon class="pt-1">build</mat-icon>Tools<mat-icon>arrow_drop_down</mat-icon>&nbsp;</button>
+    <button [matMenuTriggerFor]="tools">
+      <mat-icon class="pt-1">build</mat-icon
+      >Tools<mat-icon>arrow_drop_down</mat-icon>&nbsp;
+    </button>
     <mat-menu #tools="matMenu">
       <button routerLink="/dices" mat-menu-item>
         <span>Dices</span>

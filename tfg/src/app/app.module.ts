@@ -35,6 +35,8 @@ import { DicesComponent } from './tools/dices/dices/dices.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { RulesComponent } from './wiki/rules/view_rules/rules/rules.component';
 import { RuleComponent } from './wiki/rules/rule/rule/rule.component';
+import { BackgroundsComponent } from './wiki/character/backgrounds/backgrounds.component';
+import { FeatsComponent } from './wiki/character/feats/feats.component';
 
 
 @NgModule({
@@ -52,6 +54,8 @@ import { RuleComponent } from './wiki/rules/rule/rule/rule.component';
     DicesComponent,
     RulesComponent,
     RuleComponent,
+    BackgroundsComponent,
+    FeatsComponent,
   ],
   imports: [
     BrowserModule,

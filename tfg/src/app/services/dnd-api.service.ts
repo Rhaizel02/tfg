@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Consulta } from '../interfaces/consulta';
 import { Observable, map } from 'rxjs';
 import { RuleInterface } from '../interfaces/rule-interface';
+import { BackgroundInterface } from '../interfaces/background';
+
 
 @Injectable({
   providedIn: 'root',
@@ -103,5 +105,17 @@ export class DndApiService {
 
   getRuleDetails(s: string) {
     return this.http.get(`${this.apiUrl}sections/${s}`);
+  }
+
+  getBackgrounds(){
+    let backgrounds: BackgroundInterface[] = [];
+    this.http
+      .get(`${this.apiUrl}backgrounds/`)
+      .subscribe((data: any) => {
+        for (const background of data.results) {
+          backgrounds.push({name: background.name, slug: background.slug, desc: background.desc, document__title: background.document__title});
+        }
+      });
+    return backgrounds;
   }
 }

@@ -9,6 +9,7 @@ import { RaceComponent } from './wiki/races/race/race/race.component';
 import { DicesComponent } from './tools/dices/dices/dices.component';
 import { RulesComponent } from './wiki/rules/view_rules/rules/rules.component';
 import { RuleComponent } from './wiki/rules/rule/rule/rule.component';
+import { BackgroundsComponent } from './wiki/character/backgrounds/backgrounds.component';
 const routes: Routes = [
   {path:'home', component: InicioComponent},
   {path:'contact', component: ContactoComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:'rules', component: RulesComponent},
   {path:'rules/:ruleSlug', component: RuleComponent},
   {path:'dices', component: DicesComponent},
+  {path:'backgrounds', component: BackgroundsComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', redirectTo: '/home', pathMatch: 'full'},
 ];
