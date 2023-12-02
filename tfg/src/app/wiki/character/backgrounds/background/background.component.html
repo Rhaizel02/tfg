@@ -1,0 +1,14 @@
+<div *ngIf="background" class="flex justify-center bg-slate-50">
+    <mat-card class="w-full lg:w-2/3 xl:w-1/2 my-10 bg-white shadow-xl">
+      <div class="text-center p-4">
+        <h3 class="mat-headline-5 font-bold text-indigo-600">{{ background.name.toUpperCase() }}</h3>
+        <mat-card-subtitle>Background information</mat-card-subtitle>
+      </div>
+      <mat-card-content class="p-4 text-gray-700">
+        <div *ngFor="let fragment of backgroundInfo" [innerHTML]="fragment" class="py-2"></div>
+        <mat-divider></mat-divider>
+        <p class="pt-2"><strong>Source: </strong><a href={{background.document__url}} class="text-blue-500" >{{ background.document__title}} </a></p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

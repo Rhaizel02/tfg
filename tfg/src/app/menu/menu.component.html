@@ -23,9 +23,11 @@
       </button>
       <button [matMenuTriggerFor]="character" mat-menu-item>Character</button>
       <mat-menu #character="matMenu">
+
         <button routerLink="/classes" mat-menu-item>
           <span>Classes</span>
         </button>
+        
         <button routerLink="/backgrounds" mat-menu-item>
           <span>Backgrounds</span>
         </button>

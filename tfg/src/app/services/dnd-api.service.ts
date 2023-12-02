@@ -118,4 +118,8 @@ export class DndApiService {
       });
     return backgrounds;
   }
+
+  getBackgroundDetails(s: string) {
+    return this.http.get(`${this.apiUrl}backgrounds/${s}`);
+  }
 }
