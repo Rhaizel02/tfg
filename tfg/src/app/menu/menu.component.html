@@ -1,50 +1,114 @@
 <div class="bg-white">
-  <mat-toolbar>
-    <a routerLink="/home"><mat-icon class="pt-1">home</mat-icon>Home &nbsp;</a>
-    <a routerLink="/contact"
-      ><mat-icon class="pt-1">contact_page</mat-icon>Contact &nbsp;</a
-    >
-    <button [matMenuTriggerFor]="wikis">
-      <mat-icon class="pt-1">book</mat-icon
-      >Wiki<mat-icon>arrow_drop_down</mat-icon>&nbsp;
-    </button>
-    <mat-menu #wikis="matMenu">
-      <button routerLink="/spells" mat-menu-item>
-        <span>Spells</span>
+  <mat-toolbar
+    ><div class="md:hidden">
+      <button mat-icon-button [matMenuTriggerFor]="mobileMenu">
+        <mat-icon>menu</mat-icon>
       </button>
-      <button routerLink="/monsters" mat-menu-item>
-        <span>Monsters</span>
+    </div>
+    <!-- Menú Móvil -->
+    <mat-menu #mobileMenu="matMenu">
+      <!-- Home -->
+      <button mat-menu-item routerLink="/home">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
       </button>
-      <button routerLink="/races" mat-menu-item>
-        <span>Races</span>
-      </button>
-      <button routerLink="/rules" mat-menu-item>
-        <span>Rules</span>
-      </button>
-      <button [matMenuTriggerFor]="character" mat-menu-item>Character</button>
-      <mat-menu #character="matMenu">
 
-        <button routerLink="/classes" mat-menu-item>
-          <span>Classes</span>
+      <!-- Contact -->
+      <button mat-menu-item routerLink="/contact">
+        <mat-icon>contact_page</mat-icon>
+        <span>Contact</span>
+      </button>
+
+      <!-- Wiki -->
+      <button mat-menu-item [matMenuTriggerFor]="wikisMobile">
+        <mat-icon>book</mat-icon>
+        <span>Wiki</span>
+      </button>
+
+      <!-- Wiki Submenu -->
+      <mat-menu #wikisMobile="matMenu">
+        <button mat-menu-item routerLink="/spells"><span>Spells</span></button>
+        <button mat-menu-item routerLink="/monsters">
+          <span>Monsters</span>
         </button>
-        
-        <button routerLink="/backgrounds" mat-menu-item>
-          <span>Backgrounds</span>
+        <button mat-menu-item routerLink="/races"><span>Races</span></button>
+        <button mat-menu-item routerLink="/rules"><span>Rules</span></button>
+        <button mat-menu-item [matMenuTriggerFor]="characterMobile">
+          Character
         </button>
 
-        <button routerLink="/feats" mat-menu-item>
-          <span>Feats</span>
-        </button>
+        <!-- Character Submenu -->
+        <mat-menu #characterMobile="matMenu">
+          <button mat-menu-item routerLink="/classes">
+            <span>Classes</span>
+          </button>
+          <button mat-menu-item routerLink="/backgrounds">
+            <span>Backgrounds</span>
+          </button>
+          <button mat-menu-item routerLink="/feats"><span>Feats</span></button>
+        </mat-menu>
+      </mat-menu>
+
+      <!-- Tools -->
+      <button mat-menu-item [matMenuTriggerFor]="toolsMobile">
+        <mat-icon>build</mat-icon>
+        <span>Tools</span>
+      </button>
+
+      <!-- Tools Submenu -->
+      <mat-menu #toolsMobile="matMenu">
+        <button mat-menu-item routerLink="/dices"><span>Dices</span></button>
       </mat-menu>
     </mat-menu>
-    <button [matMenuTriggerFor]="tools">
-      <mat-icon class="pt-1">build</mat-icon
-      >Tools<mat-icon>arrow_drop_down</mat-icon>&nbsp;
-    </button>
-    <mat-menu #tools="matMenu">
-      <button routerLink="/dices" mat-menu-item>
-        <span>Dices</span>
+
+    <div class="hidden w-full md:block">
+      <a routerLink="/home"
+        ><mat-icon class="pt-1">home</mat-icon>Home &nbsp;</a
+      >
+      <a routerLink="/contact"
+        ><mat-icon class="pt-1">contact_page</mat-icon>Contact &nbsp;</a
+      >
+      <button [matMenuTriggerFor]="wikis">
+        <mat-icon class="pt-1">book</mat-icon
+        >Wiki<mat-icon>arrow_drop_down</mat-icon>&nbsp;
       </button>
-    </mat-menu>
+      <mat-menu #wikis="matMenu">
+        <button routerLink="/spells" mat-menu-item>
+          <span>Spells</span>
+        </button>
+        <button routerLink="/monsters" mat-menu-item>
+          <span>Monsters</span>
+        </button>
+        <button routerLink="/races" mat-menu-item>
+          <span>Races</span>
+        </button>
+        <button routerLink="/rules" mat-menu-item>
+          <span>Rules</span>
+        </button>
+        <button [matMenuTriggerFor]="character" mat-menu-item>Character</button>
+        <mat-menu #character="matMenu">
+          <button routerLink="/classes" mat-menu-item>
+            <span>Classes</span>
+          </button>
+
+          <button routerLink="/backgrounds" mat-menu-item>
+            <span>Backgrounds</span>
+          </button>
+
+          <button routerLink="/feats" mat-menu-item>
+            <span>Feats</span>
+          </button>
+        </mat-menu>
+      </mat-menu>
+      <button [matMenuTriggerFor]="tools">
+        <mat-icon class="pt-1">build</mat-icon
+        >Tools<mat-icon>arrow_drop_down</mat-icon>&nbsp;
+      </button>
+      <mat-menu #tools="matMenu">
+        <button routerLink="/dices" mat-menu-item>
+          <span>Dices</span>
+        </button>
+      </mat-menu>
+    </div>
   </mat-toolbar>
 </div>

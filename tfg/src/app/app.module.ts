@@ -38,6 +38,7 @@ import { RuleComponent } from './wiki/rules/rule/rule/rule.component';
 import { BackgroundsComponent } from './wiki/character/backgrounds/view_backgrounds/backgrounds.component';
 import { FeatsComponent } from './wiki/character/feats/feats.component';
 import { BackgroundComponent } from './wiki/character/backgrounds/background/background.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 @NgModule({
@@ -84,6 +85,8 @@ import { BackgroundComponent } from './wiki/character/backgrounds/background/bac
     MatGridListModule,
     MatListModule,
     MatFormFieldModule,
+    MatSidenavModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
