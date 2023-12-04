@@ -39,6 +39,8 @@ import { BackgroundsComponent } from './wiki/character/backgrounds/view_backgrou
 import { FeatsComponent } from './wiki/character/feats/view_feats/feats.component';
 import { BackgroundComponent } from './wiki/character/backgrounds/background/background.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { ClassesComponent } from './wiki/character/classes/view_classes/classes/classes.component';
+import { ClassComponent } from './wiki/character/classes/class/class.component';
 
 
 @NgModule({
@@ -59,6 +61,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     BackgroundsComponent,
     FeatsComponent,
     BackgroundComponent,
+    ClassesComponent,
+    ClassComponent,
   ],
   imports: [
     BrowserModule,

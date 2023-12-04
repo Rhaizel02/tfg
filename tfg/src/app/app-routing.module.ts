@@ -12,6 +12,8 @@ import { RuleComponent } from './wiki/rules/rule/rule/rule.component';
 import { BackgroundsComponent } from './wiki/character/backgrounds/view_backgrounds/backgrounds.component';
 import { BackgroundComponent } from './wiki/character/backgrounds/background/background.component';
 import { FeatsComponent } from './wiki/character/feats/view_feats/feats.component';
+import { ClassesComponent } from './wiki/character/classes/view_classes/classes/classes.component';
+import { ClassComponent } from './wiki/character/classes/class/class.component';
 const routes: Routes = [
   {path:'home', component: InicioComponent},
   {path:'contact', component: ContactoComponent},
@@ -21,6 +23,8 @@ const routes: Routes = [
   {path:'races/:raceSlug', component: RaceComponent},
   {path:'rules', component: RulesComponent},
   {path:'rules/:ruleSlug', component: RuleComponent},
+  {path:'classes', component: ClassesComponent},
+  {path:'classes/:classSlug', component: ClassComponent},
   {path:'backgrounds', component: BackgroundsComponent},
   {path:'backgrounds/:backgroundSlug', component: BackgroundComponent},
   {path:'feats', component: FeatsComponent},
