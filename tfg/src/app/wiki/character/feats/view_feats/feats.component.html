@@ -1,0 +1,28 @@
+<div class="p-4 bg-gray-100 min-h-screen">
+    <!-- Título y Subtítulo -->
+    <div class="text-center p-4">
+      <p class="text-5xl text-indigo-600">D&D Feats</p>
+      <p class="text-xl text-gray-700">Explore Unique Abilities and Skills</p>
+    </div>
+  
+    <!-- Contenido de Feats -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div *ngFor="let feat of feats.results" class="bg-white rounded-lg border border-gray-200 shadow-md p-6 relative">
+        <div class="absolute top-1 right-1"><button mat-icon-button class=" text-indigo-600 hover:text-indigo-800">
+            <mat-icon>bookmark_border</mat-icon>
+        </button>
+    </div>
+        <div class="text-xl text-indigo-600 text-center tracking-wide font-semibold">{{ feat.name.toUpperCase() }}</div>
+        <div class="text-sm text-gray-600 mt-1">{{ feat.desc }}</div>
+        <div class="text-sm text-blue-500 mt-2 font-semibold">{{ feat.prerequisite }}</div>
+        <div *ngIf="feat.effects_desc.length" class="text-sm text-gray-600 mt-2"> Effects: </div>
+        <ul class="list-disc pl-5 mt-1 text-sm">
+          <li *ngFor="let effect of feat.effects_desc" class="text-gray-600">{{ effect }}</li>
+        </ul>
+        <div class="text-gray-500 mt-4 ml-2">
+          <mat-icon class="text-xl text-indigo-600 -mb-1">menu_book</mat-icon>
+          <a [href]="feat.document__url" class="text-blue-500 hover:text-blue-700" target="_blank">{{ feat.document__title }}</a>
+        </div>
+      </div>
+    </div>
+</div>

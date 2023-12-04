@@ -122,4 +122,18 @@ export class DndApiService {
   getBackgroundDetails(s: string) {
     return this.http.get(`${this.apiUrl}backgrounds/${s}`);
   }
+
+  getFeats(): Observable<Consulta> {
+    return this.http.get(`${this.apiUrl}feats/`).pipe(
+      map((data: any) => {
+        let consulta: Consulta = {
+          count: data.count,
+          next: data.next,
+          previous: data.previous,
+          results: data.results,
+        };
+        return consulta;
+      })
+    );
+  }
 }
