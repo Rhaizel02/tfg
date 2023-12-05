@@ -107,6 +107,27 @@ export class DndApiService {
     return this.http.get(`${this.apiUrl}sections/${s}`);
   }
 
+  getClasses() {
+    let classes: any[] = [];
+    this.http
+      .get(`${this.apiUrl}classes/?fields=name,slug`)
+      .subscribe((data: any) => {
+        for (const clase of data.results) {
+          classes.push(clase);
+        }
+      });
+    return classes;
+  }
+
+  getClassDetails(s: string) {
+    return this.http.get(`${this.apiUrl}classes/${s}`);
+  }
+
+  getSubclassDetails(s: string) {
+    return this.http.get(`${this.apiUrl}subclasses/${s}`);
+  }
+  
+
   getBackgrounds(){
     let backgrounds: BackgroundInterface[] = [];
     this.http
