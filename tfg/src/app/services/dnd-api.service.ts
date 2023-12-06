@@ -122,10 +122,6 @@ export class DndApiService {
   getClassDetails(s: string) {
     return this.http.get(`${this.apiUrl}classes/${s}`);
   }
-
-  getSubclassDetails(s: string) {
-    return this.http.get(`${this.apiUrl}subclasses/${s}`);
-  }
   
 
   getBackgrounds(){
