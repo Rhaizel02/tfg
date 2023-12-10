@@ -41,7 +41,6 @@ import { BackgroundComponent } from './wiki/character/backgrounds/background/bac
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { ClassesComponent } from './wiki/character/classes/view_classes/classes/classes.component';
 import { ClassComponent } from './wiki/character/classes/class/class.component';
-import { SubclassComponent } from './wiki/character/classes/subclass/subclass.component';
 
 
 @NgModule({
@@ -64,7 +63,6 @@ import { SubclassComponent } from './wiki/character/classes/subclass/subclass.co
     BackgroundComponent,
     ClassesComponent,
     ClassComponent,
-    SubclassComponent,
   ],
   imports: [
     BrowserModule,

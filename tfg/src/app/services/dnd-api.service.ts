@@ -110,7 +110,7 @@ export class DndApiService {
   getClasses() {
     let classes: any[] = [];
     this.http
-      .get(`${this.apiUrl}classes/?fields=name,slug`)
+      .get(`${this.apiUrl}classes/`)
       .subscribe((data: any) => {
         for (const clase of data.results) {
           classes.push(clase);

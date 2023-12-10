@@ -1,12 +1,29 @@
 <div class="p-4 bg-gray-100 min-h-screen">
-    <!-- Título y Subtítulo -->
-    <div class="text-center p-4">
-      <p class="text-5xl text-indigo-600">D&D Classes</p>
-      <p class="text-xl text-gray-700">Explore the D&D classes</p>
+  <div class="text-center p-4">
+    <p class="text-5xl text-indigo-600">D&D Classes</p>
+    <p class="text-xl text-gray-700">Explore the D&D classes</p>
+  </div>  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div
+      *ngFor="let class of this.classes"
+      class="bg-white rounded-lg border border-gray-200 shadow-md p-6 relative hover:shadow-lg hover:bg-slate-100 transition-shadow duration-300 cursor-pointer"
+      (click)="ClassDetail(class.slug)"
+    >
+      <p
+        class="text-xl text-indigo-600 text-center tracking-wide font-semibold"
+      >
+        {{ class.name.toUpperCase() }}
+      </p>
+      <p class="mt-2 text-gray-600 line-clamp-2 md:line-clamp-3">{{ clean(class.desc) }}</p>
+      <div class="text-sm text-gray-600 mt-1"><strong>HP: </strong> {{ class.hp_at_1st_level }}</div>
+      <div class="text-sm text-gray-600 mt-1"><strong>Armor Proficiency: </strong>{{ class.prof_armor }}</div>
+      <div class="text-sm text-gray-600 mt-1"><strong>Weapons Proficiency: </strong>{{ class.prof_weapons }}<div>
+      <div class="text-sm text-gray-600 mt-1"><strong>Tools Proficiency: </strong>{{ class.prof_tools }}</div>
+      <div class="text-sm text-gray-600 mt-1"><strong>Saving Throws: </strong>{{ class.prof_saving_throws }}</div>
+      <div class="text-gray-500 mt-4 ml-2">
+        <mat-icon class="text-xl text-indigo-600 -mb-1">menu_book</mat-icon>
+        <a [href]="class.document__url" class="text-blue-500 hover:text-blue-700" target="_blank">{{ class.document__title }}</a>
+      </div>
     </div>
-  
-    <div *ngFor="let class of this.classes" class="">
-
-    </div>
-   
+  </div>
 </div>
