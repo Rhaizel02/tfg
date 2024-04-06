@@ -28,9 +28,12 @@ export class ClassComponent {
         this.class = data;
       });
     }
+
   }
 
   processMarkdown(s: string) {
+    console.log(this.class);
+
     return this.sanitizer.bypassSecurityTrustHtml(marked.parse(s));
   }
 }

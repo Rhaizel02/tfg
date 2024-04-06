@@ -1,1 +1,9 @@
-<p>class works!</p>
+<div *ngIf="this.class" class="p-4 bg-gray-100 min-h-screen">
+    <div class="max-w-4xl mx-auto bg-white rounded-lg border border-gray-200 shadow-md p-6">
+      <h2 class="text-3xl font-bold text-indigo-600">{{ this.class.name }}</h2>
+
+      <div class="prose prose-indigo"  [innerHTML]="processMarkdown(this.class.desc)"></div>
+      <!-- Agrega aquí más información como equipo, habilidades, etc. -->
+    </div>
+  </div>
+  
