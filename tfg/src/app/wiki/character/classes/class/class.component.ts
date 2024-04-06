@@ -12,10 +12,12 @@ import { DndApiService } from 'src/app/services/dnd-api.service';
 export class ClassComponent {
   class: any;
   classSlug: any = '';
+  panelOpenState : boolean = false;
+
   constructor(
     private route: ActivatedRoute,
     private api: DndApiService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
   ) {}
 
   ngOnInit(): void {
@@ -28,12 +30,11 @@ export class ClassComponent {
         this.class = data;
       });
     }
-
   }
 
-  processMarkdown(s: string) {
-    console.log(this.class);
-
+  getHtml(s: string) {
     return this.sanitizer.bypassSecurityTrustHtml(marked.parse(s));
   }
+
+
 }

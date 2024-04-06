@@ -1,9 +1,10 @@
-<div *ngIf="this.class" class="p-4 bg-gray-100 min-h-screen">
-    <div class="max-w-4xl mx-auto bg-white rounded-lg border border-gray-200 shadow-md p-6">
-      <h2 class="text-3xl font-bold text-indigo-600">{{ this.class.name }}</h2>
+<div *ngIf="class" class="bg-gray-100 p-4 min-h-screen">
+  <mat-card class="max-w-5xl mx-auto bg-white shadow-lg">
+    <mat-card-title class="text-4xl my-2 mb-2 text-indigo-600 font-bold text-center">{{class.name}}</mat-card-title>
+    <mat-card-content>
+      <div [innerHTML]="getHtml(class.desc)" class="text-xl prose prose-lg prose-indigo m-auto text-gray-700"></div>
+      <!-- Agrega aquí más contenido y estructuras para las otras propiedades, si es necesario -->
+    </mat-card-content>
+  </mat-card>
+</div>
 
-      <div class="prose prose-indigo"  [innerHTML]="processMarkdown(this.class.desc)"></div>
-      <!-- Agrega aquí más información como equipo, habilidades, etc. -->
-    </div>
-  </div>
-  

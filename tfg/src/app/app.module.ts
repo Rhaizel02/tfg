@@ -43,6 +43,7 @@ import { ClassesComponent } from './wiki/character/classes/view_classes/classes/
 import { ClassComponent } from './wiki/character/classes/class/class.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,7 +91,6 @@ import { ClassComponent } from './wiki/character/classes/class/class.component';
     MatListModule,
     MatFormFieldModule,
     MatSidenavModule,
-    
   ],
   providers: [],
   bootstrap: [AppComponent],
