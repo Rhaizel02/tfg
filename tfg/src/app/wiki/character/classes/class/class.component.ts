@@ -28,6 +28,7 @@ export class ClassComponent {
     if (this.classSlug) {
       this.api.getClassDetails(this.classSlug).subscribe((data) => {
         this.class = data;
+        console.log(this.class);
       });
     }
   }

@@ -1,8 +1,33 @@
 <div *ngIf="class" class="bg-gray-100 p-4 min-h-screen">
   <mat-card class="max-w-5xl mx-auto bg-white shadow-lg">
     <mat-card-title class="text-4xl my-2 mb-2 text-indigo-600 font-bold text-center">{{class.name}}</mat-card-title>
-    <mat-card-content>
-      <div [innerHTML]="getHtml(class.desc)" class="text-xl prose prose-lg prose-indigo m-auto text-gray-700"></div>
+    <mat-card-content class="text-xl prose prose-lg prose-indigo m-auto text-gray-700">
+      <div id="hit">
+        <h3>HIT POINTS</h3>
+        <p><strong>Hit Dice: </strong>{{class.hit_dice}}</p>
+        <p><strong>Hit Points at 1st Level: </strong>{{class.hp_at_1st_level}}</p>
+        <p><strong>Hit Points at Higher Levels: </strong>{{class.hp_at_higher_levels}}</p>
+      </div>
+      <div id="prof" >
+      <h3>PROFICIENCIES</h3>
+      <p><strong>Armor: </strong>{{class.prof_armor}}</p>
+      <p><strong>Weapons: </strong>{{class.prof_weapons}}</p>
+      <p><strong>Tools: </strong>{{class.prof_tools}}</p>
+      <p><strong>Saving Throws: </strong>{{class.prof_saving_throws}}</p>
+      <p><strong>Skills: </strong>{{class.prof_skills}}</p>
+    </div>
+    <div id="desc">
+      <h3>DESCRIPTION</h3>
+      <div [innerHTML]="getHtml(class.desc)" ></div>
+    </div>
+    <div id="equip">
+      <h3>EQUIPMENT</h3>
+      <div [innerHTML]="getHtml(class.equipment)" ></div>
+    </div>
+    <div id="table">
+      <h3>CLASS FEATURES</h3>
+      <div [innerHTML]="getHtml(class.table)" ></div>
+    </div>
       <!-- Agrega aquí más contenido y estructuras para las otras propiedades, si es necesario -->
     </mat-card-content>
   </mat-card>
