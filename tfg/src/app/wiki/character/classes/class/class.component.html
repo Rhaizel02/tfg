@@ -1,15 +1,17 @@
 <div *ngIf="class" class="bg-gray-100 p-4 min-h-screen">
   <mat-card class="max-w-5xl mx-auto bg-white shadow-lg">
     <mat-card-title class="text-4xl my-2 mb-2 text-indigo-600 font-bold text-center">{{class.name}}</mat-card-title>
-    <mat-card-content class="text-xl prose prose-lg prose-indigo m-auto text-gray-700">
+    <mat-card-content class="text-lg prose prose-lg prose-indigo ml-4 mr-auto  max-w-full">
       <div id="hit">
         <h3>HIT POINTS</h3>
+        <hr>
         <p><strong>Hit Dice: </strong>{{class.hit_dice}}</p>
         <p><strong>Hit Points at 1st Level: </strong>{{class.hp_at_1st_level}}</p>
         <p><strong>Hit Points at Higher Levels: </strong>{{class.hp_at_higher_levels}}</p>
       </div>
       <div id="prof" >
       <h3>PROFICIENCIES</h3>
+      <hr>
       <p><strong>Armor: </strong>{{class.prof_armor}}</p>
       <p><strong>Weapons: </strong>{{class.prof_weapons}}</p>
       <p><strong>Tools: </strong>{{class.prof_tools}}</p>
@@ -17,19 +19,27 @@
       <p><strong>Skills: </strong>{{class.prof_skills}}</p>
     </div>
     <div id="desc">
-      <h3>DESCRIPTION</h3>
+      <h3>CLASS ABILITIES</h3>
+      <hr>
       <div [innerHTML]="getHtml(class.desc)" ></div>
     </div>
     <div id="equip">
       <h3>EQUIPMENT</h3>
+      <hr>
       <div [innerHTML]="getHtml(class.equipment)" ></div>
     </div>
     <div id="table">
       <h3>CLASS FEATURES</h3>
+      <hr>
       <div [innerHTML]="getHtml(class.table)" ></div>
     </div>
-      <!-- Agrega aquí más contenido y estructuras para las otras propiedades, si es necesario -->
+    <div id="subclasses">
+      <h3>{{ class.subtypes_name}} </h3>
+      <hr class="-mb-0">
+      <br>
+      <a *ngFor="let subclass of class.archetypes" [routerLink]="['/classes', classSlug, subclass.slug]" class="text-indigo-600 hover:text-indigo-800">{{subclass.name}} <br></a>
+    </div>
     </mat-card-content>
-  </mat-card>
+  </mat-card> 
 </div>
 

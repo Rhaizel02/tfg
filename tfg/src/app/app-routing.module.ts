@@ -14,6 +14,8 @@ import { BackgroundComponent } from './wiki/character/backgrounds/background/bac
 import { FeatsComponent } from './wiki/character/feats/view_feats/feats.component';
 import { ClassesComponent } from './wiki/character/classes/view_classes/classes/classes.component';
 import { ClassComponent } from './wiki/character/classes/class/class.component';
+import { SubclassComponent } from './wiki/character/classes/subclass/subclass.component';
+import { TrackerComponent } from './tools/tracker/tracker.component';
 const routes: Routes = [
   {path:'home', component: InicioComponent},
   {path:'contact', component: ContactoComponent},
@@ -26,9 +28,11 @@ const routes: Routes = [
   {path:'classes', component: ClassesComponent},
   {path:'classes/:classSlug', component: ClassComponent},
   {path:'backgrounds', component: BackgroundsComponent},
+  {path:'classes/:classSlug/:subclassSlug', component: SubclassComponent},
   {path:'backgrounds/:backgroundSlug', component: BackgroundComponent},
   {path:'feats', component: FeatsComponent},
   {path:'dices', component: DicesComponent},
+  {path:'tracker', component: TrackerComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', redirectTo: '/home', pathMatch: 'full'},
 ];
