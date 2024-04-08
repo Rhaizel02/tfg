@@ -1,0 +1,23 @@
+<div class="container mx-auto px-4">
+    <div class="flex flex-wrap justify-center">
+      <!-- Main Content -->
+      <main class="w-full lg:w-2/3">
+        <div class="py-5 border-b border-gray-200">
+          <h1 class="text-2xl font-semibold">User Profile</h1>
+        </div>
+        <!-- User Data -->
+        <div class="py-4" *ngIf="this.user">
+          <div class="flex items-start space-x-4">
+            <img class="w-20 h-20 rounded-full object-cover" src="{{ user.photoURL ? user.photoURL : '/assets/dummy-user.png' }}" alt="{{ user.displayName }}">
+            <div>
+              <h2 class="text-xl">Hello: <strong>{{ user.displayName ? user.displayName : 'User' }}</strong></h2>
+              <p>User ID: <strong>{{ user.uid }}</strong></p>
+              <p>Email: <strong>{{ user.email }}</strong></p>
+              <p>Email Verified: <strong>{{ user.emailVerified ? 'Yes' : 'No' }}</strong></p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  

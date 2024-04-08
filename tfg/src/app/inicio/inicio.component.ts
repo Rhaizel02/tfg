@@ -8,8 +8,8 @@ import { FirebaseService } from '../services/firebase/firebase.service';
 export class InicioComponent {
   constructor(private firebase: FirebaseService) {}
   ngOnInit(): void {
-    console.log(this.firebase.getItems());
-    // crear documento pasando un objeto
-    this.firebase.createDocument({ name: 'test', value: 1 });
+    this.firebase.getItems().subscribe((items) => {
+      console.log(items);
+    });
   }
 }

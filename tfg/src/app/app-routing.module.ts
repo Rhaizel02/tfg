@@ -17,6 +17,15 @@ import { ClassComponent } from './wiki/character/classes/class/class.component';
 import { SubclassComponent } from './wiki/character/classes/subclass/subclass.component';
 import { TrackerComponent } from './tools/tracker/tracker.component';
 import { EncounterCalculatorComponent } from './tools/encounter-calculator/encounter-calculator.component';
+import { LoginComponent } from './user_components/login/login.component';
+import { RegisterComponent } from './user_components/register/register.component';
+import { UserProfileComponent } from './user_components/user-profile/user-profile.component';
+import { ForgotPassComponent } from './user_components/forgot-pass/forgot-pass.component';
+
+
+import { secureInnerPageGuard } from './guard/secure-inner-page.guard';
+import { AuthGuard } from './guard/auth.guard';
+
 const routes: Routes = [
   {path:'home', component: InicioComponent},
   {path:'contact', component: ContactoComponent},
@@ -35,6 +44,10 @@ const routes: Routes = [
   {path:'dices', component: DicesComponent},
   {path:'tracker', component: TrackerComponent},
   {path:'encounter-calculator', component: EncounterCalculatorComponent},
+  {path:'login', component: LoginComponent },
+  {path:'register', component: RegisterComponent, canActivate: [secureInnerPageGuard]},
+  {path:'forgot-password', component: ForgotPassComponent},
+  {path:'profile', component: UserProfileComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', redirectTo: '/home', pathMatch: 'full'},
 ];

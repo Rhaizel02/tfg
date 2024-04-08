@@ -53,6 +53,12 @@ import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingServ
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { enviroment } from 'src/enviroments/enviroment';
 
+// AUTH SERVICE
+import { AuthService } from './services/firebase_auth/auth.service';
+import { LoginComponent } from './user_components/login/login.component';
+import { RegisterComponent } from './user_components/register/register.component';
+import { ForgotPassComponent } from './user_components/forgot-pass/forgot-pass.component';
+import { UserProfileComponent } from './user_components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +82,10 @@ import { enviroment } from 'src/enviroments/enviroment';
     ClassComponent,
     TrackerComponent,
     InicioComponent,
+    LoginComponent,
+    RegisterComponent,
+    ForgotPassComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -114,7 +124,8 @@ import { enviroment } from 'src/enviroments/enviroment';
   ],
   providers: [
     ScreenTrackingService,
-    UserTrackingService
+    UserTrackingService,
+    AuthService,
   ],
   bootstrap: [AppComponent],
 })
