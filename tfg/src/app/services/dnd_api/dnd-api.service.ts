@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Consulta } from '../interfaces/consulta';
+import { Consulta } from '../../interfaces/consulta';
 import { Observable, map } from 'rxjs';
-import { RuleInterface } from '../interfaces/rule-interface';
-import { BackgroundInterface } from '../interfaces/background';
+import { RuleInterface } from '../../interfaces/rule-interface';
+import { BackgroundInterface } from '../../interfaces/background';
 
 
 @Injectable({

@@ -16,6 +16,7 @@ import { ClassesComponent } from './wiki/character/classes/view_classes/classes/
 import { ClassComponent } from './wiki/character/classes/class/class.component';
 import { SubclassComponent } from './wiki/character/classes/subclass/subclass.component';
 import { TrackerComponent } from './tools/tracker/tracker.component';
+import { EncounterCalculatorComponent } from './tools/encounter-calculator/encounter-calculator.component';
 const routes: Routes = [
   {path:'home', component: InicioComponent},
   {path:'contact', component: ContactoComponent},
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path:'feats', component: FeatsComponent},
   {path:'dices', component: DicesComponent},
   {path:'tracker', component: TrackerComponent},
+  {path:'encounter-calculator', component: EncounterCalculatorComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', redirectTo: '/home', pathMatch: 'full'},
 ];

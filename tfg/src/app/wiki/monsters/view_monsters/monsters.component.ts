@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DndApiService } from '../../../services/dnd-api.service';
+import { DndApiService } from '../../../services/dnd_api/dnd-api.service';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
 import { Consulta } from '../../../interfaces/consulta';

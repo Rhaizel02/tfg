@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DndApiService } from '../../../services/dnd-api.service';
+import { DndApiService } from '../../../services/dnd_api/dnd-api.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTable } from '@angular/material/table';

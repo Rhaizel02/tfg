@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Participant, STATUSES_VALUES } from '../../interfaces/participant';
+import { Participant } from '../../interfaces/participant';
 
 @Component({
   selector: 'app-tracker',
@@ -11,7 +11,7 @@ export class TrackerComponent {
   participants: Participant[] = [];
   newParticipant: Participant = {
     id: 0,
-    name: '',
+    name: '', 
     isEnemy: false,
     initiative: 0,
     initiative_bonus: 0,
@@ -19,13 +19,27 @@ export class TrackerComponent {
     hp: 0,
     statuses: [],
   };
-  newStatus: string = '';
-  possible_statuses = STATUSES_VALUES;  
+  newStatus: string = 'DEAFENED';
+  possible_statuses = ['DEAFENED',
+  'BLINDED',
+  'CHARMED',
+  'FRIGHTENED',
+  'GRAPPLED',
+  'INCAPACITATED',
+  'INVISIBLE',
+  'PARALYZED',
+  'PETRIFIED',
+  'POISONED',
+  'PRONE',
+  'RESTRAINED',
+  'STUNNED',
+  'UNCONSCIOUS',
+  'EXHAUSTION',]
 
   addParticipant() {
     console.log(this.possible_statuses);
     this.participants.push({ ...this.newParticipant, id: Date.now() }); // Usamos timestamp como ID simple
-    this.participants.sort((a, b) => b.initiative - a.initiative); // Ordenamos por iniciativa
+    this.sortParticipants();
     this.newParticipant = {
       id: 0,
       name: '',
@@ -36,6 +50,10 @@ export class TrackerComponent {
       hp: 0,
       statuses: [],
     }; // Reset
+  }
+
+  sortParticipants() {
+    this.participants.sort((a, b) => (b.initiative+b.initiative_bonus) - (a.initiative+a.initiative_bonus));
   }
 
   removeParticipant(id: number) {
@@ -55,7 +73,8 @@ export class TrackerComponent {
   }
 
   subtractHp(participant: Participant, amount: number): void {
-    participant.hp -= amount;
+    if(!isNaN(amount))
+      participant.hp -= amount;
   }
 
   // Método para añadir un estado
@@ -63,5 +82,16 @@ export class TrackerComponent {
     if (participant.statuses.indexOf(status) === -1) {
       participant.statuses.push(status);
     }
+  }
+
+  clearAll(){
+    this.participants = [];
+  }
+
+  rerollInitiative(){
+    this.participants.forEach(participant => {
+      participant.initiative = Math.floor(Math.random() * 20) + 1;
+    });
+    this.sortParticipants();
   }
 }
