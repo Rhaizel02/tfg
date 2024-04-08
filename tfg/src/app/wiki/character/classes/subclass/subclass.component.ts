@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DndApiService } from 'src/app/services/dnd-api.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { marked } from 'marked';
 @Component({
@@ -16,7 +15,6 @@ export class SubclassComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private api: DndApiService,
     private sanitizer: DomSanitizer,
   ) {}
 
@@ -25,12 +23,7 @@ export class SubclassComponent {
   }
 
   ngAfterViewInit(): void {
-    if (this.subclassSlug) {
-      this.api.getSubClassDetails(this.subclassSlug).subscribe((data) => {
-        this.subclass = data;
-        console.log(this.subclass);
-      });
-    }
+    
   }
 
   getHtml(s: string) {

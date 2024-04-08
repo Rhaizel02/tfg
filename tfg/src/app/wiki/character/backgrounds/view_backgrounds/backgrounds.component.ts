@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { DndApiService } from 'src/app/services/dnd-api.service';
+import { DndApiService } from 'src/app/services/dnd_api/dnd-api.service';
 
 @Component({
   selector: 'app-backgrounds',

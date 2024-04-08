@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "rolenroll-95cd8": {
+      "hosting": {
+        "tfg": [
+          "rolenroll-95cd8"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "rolenroll-95cd8"
+  }
+}

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RuleInterface } from 'src/app/interfaces/rule-interface';
-import { DndApiService } from 'src/app/services/dnd-api.service';
+import { DndApiService } from 'src/app/services/dnd_api/dnd-api.service';
 import { Router } from '@angular/router';
 
 @Component({

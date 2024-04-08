@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import * as marked from 'marked';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { DndApiService } from 'src/app/services/dnd-api.service';
+import { DndApiService } from 'src/app/services/dnd_api/dnd-api.service';
 
 @Component({
   selector: 'app-class',

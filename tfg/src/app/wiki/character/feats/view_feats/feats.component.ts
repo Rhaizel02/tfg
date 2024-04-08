@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DndApiService } from 'src/app/services/dnd-api.service';
+import { DndApiService } from 'src/app/services/dnd_api/dnd-api.service';
 import { Consulta } from 'src/app/interfaces/consulta';
 @Component({
   selector: 'app-feats',

@@ -44,6 +44,14 @@ import { ClassComponent } from './wiki/character/classes/class/class.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { TrackerComponent } from './tools/tracker/tracker.component';
+import { InicioComponent } from './inicio/inicio.component';
+
+// FIREBASE IMPORTATIONS
+import { initializeApp, provideFirebaseApp, getApp} from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { enviroment } from 'src/enviroments/enviroment';
 
 
 @NgModule({
@@ -67,6 +75,7 @@ import { TrackerComponent } from './tools/tracker/tracker.component';
     ClassesComponent,
     ClassComponent,
     TrackerComponent,
+    InicioComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,8 +107,15 @@ import { TrackerComponent } from './tools/tracker/tracker.component';
     MatIconModule,
     MatChipsModule,
     MatSlideToggleModule,
+    provideFirebaseApp(() => initializeApp(enviroment.firebase)),
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
+    provideAnalytics(() => getAnalytics()),
   ],
-  providers: [],
+  providers: [
+    ScreenTrackingService,
+    UserTrackingService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

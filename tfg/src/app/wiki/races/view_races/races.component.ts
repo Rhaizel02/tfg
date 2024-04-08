@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DndApiService } from 'src/app/services/dnd-api.service';
+import { DndApiService } from 'src/app/services/dnd_api/dnd-api.service';
 import { Router } from '@angular/router';
 import { Libro, RaceInfo } from 'src/app/interfaces/libro';
 
