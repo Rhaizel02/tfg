@@ -1,2 +1,45 @@
-<h1>PROBANDO FIREBASE</h1>
-<p>No va</p>
+<div class="min-h-screen flex flex-col">
+    <!-- Hero Section -->
+    <section class="bg-indigo-600 text-white flex items-center justify-center text-center p-12" style="background-image: url('path-to-dnd-background.jpg'); background-size: cover; background-position: center;">
+        <div>
+          <h1 class="text-5xl font-bold mb-6">Bienvenido a Role&Roll</h1>
+          <p class="mb-6 text-xl">Your Dungeons & Dragons Companion.</p>
+          <div>
+            <button mat-stroked-button routerLink="/about" class="mr-4 bg-white text-purple-500 font-bold">Learn more</button>
+            <a mat-flat-button routerLink="/register" class="bg-white text-purple-500 font-bold">Register</a>
+          </div>
+        </div>
+      </section>
+      
+  
+    <!-- Wiki Section -->
+    <section class="flex-grow bg-blue-50">
+      <div class="container mx-auto p-12">
+        <h2 class="text-3xl text-purple-600 font-bold mb-6">Explore the Wiki</h2>
+        <p class="mb-8 ">Discover monsters, spells, races and more in our extensive D&D wiki.</p>
+        <a mat-raised-button color="primary" routerLink="/monsters">Visit Wiki</a>
+      </div>
+    </section>
+  
+    <!-- Tools Section -->
+    <section class="flex-grow bg-white">
+      <div class="container mx-auto p-12 text-center">
+        <h2 class="text-3xl text-blue-600 font-bold mb-6">D&D Tools</h2>
+        <div class="flex justify-center space-x-4">
+          <a mat-button routerLink="/dices">Dice Roller</a>
+          <a mat-button routerLink="/tracker">Combat Tracker</a>
+          <a mat-button routerLink="/encounter-calculator">Encounter Calculator</a>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Social Section -->
+    <section class="flex-grow bg-blue-50">
+      <div class="container mx-auto p-12 text-end">
+        <h2 class="text-3xl text-purple-600 font-bold mb-6">Join the Comunity!</h2>
+        <p class="mb-8">Connect with other players and DMs, share experiences, tips and more.</p>
+        <a mat-raised-button color="primary" routerLink="/profile">Explore Comunity</a>
+      </div>
+    </section>
+  </div>
+  

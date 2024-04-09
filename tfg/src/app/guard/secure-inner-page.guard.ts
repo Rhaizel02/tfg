@@ -1,29 +1,20 @@
-/*import { CanActivateFn } from '@angular/router';
+import { CanActivateFn } from '@angular/router';
+import { AuthService } from "../services/firebase_auth/auth.service";
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
 
-export const secureInnerPageGuard: CanActivateFn = (route, state) => {
+export const secureInnerPageGuard: CanActivateFn = () => {
+  // Inject the AuthService
+  const authService = inject(AuthService);
+  const router = inject(Router);
+
+  if (authService.isLoggedIn) {
+    router.navigate(['/profile']); // O la ruta que consideres adecuada para usuarios ya autenticados
+    return false;
+  }
   return true;
+
 };
 
-*/
 
-import { AuthService } from "../services/firebase_auth/auth.service";
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
-
-export class secureInnerPageGuard implements CanActivate {
-  constructor(private authService: AuthService, public router: Router) {}
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    // Check the user is logged in or not(In case the user is not logged in he will be redirected to Signin page)
-    if(this.authService.isLoggedIn !== true) {
-      this.router.navigate(['login'])
-    }
-    return true;
-  }
-} 

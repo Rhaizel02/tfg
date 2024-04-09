@@ -44,10 +44,10 @@ const routes: Routes = [
   {path:'dices', component: DicesComponent},
   {path:'tracker', component: TrackerComponent},
   {path:'encounter-calculator', component: EncounterCalculatorComponent},
-  {path:'login', component: LoginComponent },
+  {path:'login', component: LoginComponent, canActivate: [secureInnerPageGuard] },
   {path:'register', component: RegisterComponent, canActivate: [secureInnerPageGuard]},
+  {path:'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   {path:'forgot-password', component: ForgotPassComponent},
-  {path:'profile', component: UserProfileComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', redirectTo: '/home', pathMatch: 'full'},
 ];

@@ -1,1 +1,62 @@
-<p>contacto works!</p>
+<div class="flex justify-center items-center min-h-screen bg-blue-50">
+    <div class="w-full max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
+      <div class="text-center">
+        <h2 class="text-3xl font-semibold text-indigo-600">CONTACT</h2>
+        <p class="text-md text-blue-600 mt-2">Send me a message!</p>
+      </div>
+  
+      <!-- Formulario de Contacto -->
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-4 mt-5">
+        <mat-form-field class="w-full" appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="name">
+          <mat-error>El nombre es requerido</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field class="w-full" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+          <mat-error>Ingresa un email válido</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field class="w-full" appearance="fill">
+          <mat-label>Mensaje</mat-label>
+          <textarea matInput formControlName="message"></textarea>
+          <mat-error>El mensaje es requerido</mat-error>
+        </mat-form-field>
+  
+        <div class="flex justify-center">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!contactForm.valid">Send Message</button>
+        </div>
+      </form>
+
+      <hr class="my-6 border-gray-300">
+
+
+      <div class="flex flex-col items-center mt-6">
+        <span class="text-sm text-gray-500 mb-2">My email </span>
+        <div class="flex justify-center items-center">
+          <p class="text-md text-gray-600 mr-4 flex items-center">{{ this.mi_email }}</p>
+          <button mat-icon-button aria-label="Copy Email" (click)="copyEmailToClipboard()" matTooltip="Copy to Clipboard" class="text-blue-600 hover:text-blue-800">
+            <mat-icon>content_copy</mat-icon>
+          </button>
+        </div>
+      </div>
+      
+  
+      <!-- Separador -->
+      <hr class="my-6 border-gray-300">
+  
+      <!-- Iconos de Redes Sociales -->
+      <div class="flex justify-center space-x-4">
+        <a href="https://www.linkedin.com/in/bogdan-andrei-szasz-4b5562294/" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-700">
+            <i class="fa-brands fa-linkedin fa-2xl"></i>
+        </a>
+        <a href="https://github.com/Rhaizel02" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-blue-700">
+            <i class="fa-brands fa-github fa-2xl"></i>
+        </a>
+        <!-- Añade más iconos de redes sociales según necesites -->
+      </div>
+    </div>
+  </div>
+  

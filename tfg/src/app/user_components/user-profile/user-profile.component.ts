@@ -7,8 +7,10 @@ import { AuthService } from 'src/app/services/firebase_auth/auth.service';
   styleUrl: './user-profile.component.css'
 })
 export class UserProfileComponent {
-  user = this.authService.UserData;
+  user : any;
   constructor(public authService: AuthService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.user = this.authService.getAuthLocal();
+  }
 }

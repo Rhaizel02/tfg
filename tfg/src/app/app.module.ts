@@ -43,6 +43,7 @@ import { ClassesComponent } from './wiki/character/classes/view_classes/classes/
 import { ClassComponent } from './wiki/character/classes/class/class.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TrackerComponent } from './tools/tracker/tracker.component';
 import { InicioComponent } from './inicio/inicio.component';
 
@@ -59,11 +60,13 @@ import { LoginComponent } from './user_components/login/login.component';
 import { RegisterComponent } from './user_components/register/register.component';
 import { ForgotPassComponent } from './user_components/forgot-pass/forgot-pass.component';
 import { UserProfileComponent } from './user_components/user-profile/user-profile.component';
+import { ContactoComponent } from './contacto/contacto.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
+    ContactoComponent,
     SpellsComponent,
     CabeceraComponent,
     DialogHechizoComponent,
@@ -102,7 +105,6 @@ import { UserProfileComponent } from './user_components/user-profile/user-profil
     MatTableModule,
     MatSortModule,
     MatInputModule,
-    MatButtonModule,
     MatSelectModule,
     MatPaginatorModule,
     MatDialogModule,
@@ -117,6 +119,7 @@ import { UserProfileComponent } from './user_components/user-profile/user-profil
     MatIconModule,
     MatChipsModule,
     MatSlideToggleModule,
+    ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(enviroment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
