@@ -1,194 +1,87 @@
-<div class="justify-center items-center bg-slate-100">
-  <div class="bg-white max-w-6xl mx-auto my-5 mb-5 p-4 shadow-lg rounded-lg">
-    <h1
-      class="bg-purple-600 text-white text-center py-2 text-xl font-bold rounded-t-md"
-    >
+<div class="py-10">
+<div class="bg-white max-w-7xl mx-auto p-4 shadow-lg rounded-lg min-h-screen">
+    <h1 class="bg-indigo-500 text-white text-center py-2 text-xl font-bold rounded-t-md">
       Combat Tracker D&D
     </h1>
     <div class="flex flex-wrap gap-4 p-4">
       <div class="flex items-center -mb-5">
-        <label class="block">Player</label>
-        <input
-          type="checkbox"
-          class="ml-2"
-          [(ngModel)]="newParticipant.isEnemy"
-        />
+        <label for="playerCheckbox">Player</label>
+        <input id="playerCheckbox" type="checkbox" class="ml-2" [(ngModel)]="newParticipant.isEnemy" />
       </div>
       <div class="flex-1">
-        <label class="block">Name</label>
-        <input
-          class="w-full border border-gray-300 rounded p-1"
-          [(ngModel)]="newParticipant.name"
-        />
+        <label for="nameInput">Name</label>
+        <input id="nameInput" class="w-full border border-gray-300 rounded p-1" [(ngModel)]="newParticipant.name" />
       </div>
-      <div class="w-1/6">
-        <label class="block">Initial Iniciative</label>
-        <input
-          type="number"
-          min="0"
-          class="w-full border border-gray-300 rounded p-1"
-          [(ngModel)]="newParticipant.initiative"
-        />
+      <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/6">
+        <label for="initiativeInput">Initial Initiative</label>
+        <input id="initiativeInput" type="number" min="0" class="w-full border border-gray-300 rounded p-1" [(ngModel)]="newParticipant.initiative" />
       </div>
-      <div class="w-1/6">
-        <label class="block">Iniciative Bonus</label>
-        <input
-          type="number"
-          min="0"
-          class="w-full border border-gray-300 rounded p-1"
-          [(ngModel)]="newParticipant.initiative_bonus"
-        />
+      <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/6">
+        <label for="initiativeBonusInput">Initiative Bonus</label>
+        <input id="initiativeBonusInput" type="number" min="0" class="w-full border border-gray-300 rounded p-1" [(ngModel)]="newParticipant.initiative_bonus" />
       </div>
-      <div class="w-1/6">
-        <label class="block">AC</label>
-        <input
-          type="number"
-          min="0"
-          class="w-full border border-gray-300 rounded p-1"
-          [(ngModel)]="newParticipant.ac"
-        />
+      <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/6">
+        <label for="acInput">AC</label>
+        <input id="acInput" type="number" min="0" class="w-full border border-gray-300 rounded p-1" [(ngModel)]="newParticipant.ac" />
       </div>
-      <div class="w-1/6">
-        <label class="block">HP</label>
-        <input
-          type="number"
-          min="0"
-          class="w-full border border-gray-300 rounded p-1"
-          [(ngModel)]="newParticipant.hp"
-        />
+      <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/6">
+        <label for="hpInput">HP</label>
+        <input id="hpInput" type="number" min="0" class="w-full border border-gray-300 rounded p-1" [(ngModel)]="newParticipant.hp" />
       </div>
-      <button
-        [disabled]="newParticipant.name == ''"
-        class="bg-purple-600 disabled:bg-purple-400 disabled:cursor-not-allowed text-white px-4 py-2 rounded hover:bg-purple-700 transition duration-150"
-        (click)="addParticipant()"
-      >
+      <button [disabled]="newParticipant.name == ''" (click)="addParticipant()" class="bg-indigo-500 disabled:bg-indigo-300 disabled:cursor-not-allowed text-white px-4 py-2 rounded hover:bg-indigo-600 transition duration-150">
         Añadir
       </button>
     </div>
-    <div *ngIf="this.participants.at(0)" class="text-center p-4 -mb-3"> 
-      <button
-        class="bg-red-700 text-white px-3 py-1 rounded hover:bg-red-800 transition duration-150 mr-1"
-        (click)="clearAll()"
-      >
+    <hr class="border-gray-300 w-5/6 mx-auto my-2"/>
+    <div *ngIf="this.participants.at(0)" class="text-center p-4 -mb-3">
+      <button class="bg-red-700 text-white px-3 py-1 rounded hover:bg-red-800 transition duration-150 mr-1" (click)="clearAll()">
         Clear All
       </button>
-      <button
-        class="bg-blue-700 text-white px-3 py-1 rounded hover:bg-blue-800 transition duration-150 ml-1"
-        (click)="rerollInitiative()"
-      >
-        Reroll Iniciative
+      <button class="bg-blue-700 text-white px-3 py-1 rounded hover:bg-blue-800 transition duration-150 ml-1" (click)="rerollInitiative()">
+        Reroll Initiative
       </button>
     </div>
-    <div
-      *ngFor="let participant of participants; trackBy: trackByParticipants"
-      class="my-4 p-4 border border-gray-300 rounded"
-    >
-      <div
-        class="flex justify-between items-center"
-        [ngClass]="participant.isEnemy ? 'bg-green-300' : 'bg-red-300'"
-      >
+    <div *ngFor="let participant of participants; trackBy: trackByParticipants" class="my-4 p-4 border border-gray-300 rounded">
+      <div class="flex justify-between items-center" [ngClass]="participant.isEnemy ? 'bg-green-300' : 'bg-red-300'">
         <h2 class="font-semibold">
-          {{ participant.name | uppercase }} - Iniciative:
-          {{ participant.initiative }}+{{ participant.initiative_bonus }}={{
-            participant.initiative + participant.initiative_bonus
-          }}
-          - HP: {{ participant.hp }} - AC: {{ participant.ac }}
+          {{ participant.name | uppercase }} - Initiative: {{ participant.initiative }}+{{ participant.initiative_bonus }}={{ participant.initiative + participant.initiative_bonus }} - HP: {{ participant.hp }} - AC: {{ participant.ac }}
         </h2>
       </div>
       <div class="columns-2 mt-4">
-          <div class="" id="status_part">
-            <mat-select
-              class="w-1/2"
-              placeholder="ADD STATUS"
-              [(ngModel)]="newStatus"
-            >
-              <mat-option
-                class="text-black"
-                *ngFor="let status of this.possible_statuses"
-                [value]="status"
-                >{{ status }}</mat-option
-              >
-            </mat-select>
-            <button
-              class="ml-2 bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600 transition duration-150"
-              (click)="addStatus(participant, newStatus); newStatus = ''"
-            >
-              Add Status
-            </button>
-          </div>
-          <div class="text-end" id="hp_part">
-            <input
-              type="number"
-              min="1"
-              placeholder="HPs"
-              class="border border-gray-300 rounded p-1 w-20 text-right"
-              #damageInput
-            />
-            <button
-              class="w-max bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition duration-150 ml-2 mr-2"
-              (click)="
-                subtractHp(participant, damageInput.valueAsNumber);
-                damageInput.value = ''
-              "
-            >
-              Inflict Damage
-            </button>
-            <button
-              class="w-max bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 transition duration-150"
-              (click)="
-                subtractHp(participant, -damageInput.valueAsNumber);
-                damageInput.value = ''
-              "
-            >
-              Restore HP
-            </button>
-          </div>
+        <div class="" id="status_part">
+          <mat-select id="statusSelect" class="w-1/2" placeholder="ADD STATUS" [(ngModel)]="newStatus">
+            <mat-option class="text-black" *ngFor="let status of this.possible_statuses" [value]="status">{{ status }}</mat-option>
+          </mat-select>
+          <button class="ml-2 bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600 transition duration-150" (click)="addStatus(participant, newStatus)">
+            Add Status
+          </button>
+        </div>
+        <div class="text-end" id="hp_part">
+          <input type="number" min="1" placeholder="HPs" class="border border-gray-300 rounded p-1 w-20 text-right" #damageInput />
+          <button class="w-max bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition duration-150 ml-2 mr-2" (click)="subtractHp(participant, damageInput.valueAsNumber)">
+            Inflict Damage
+          </button>
+          <button class="w-max bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600 transition duration-150" (click)="subtractHp(participant, -damageInput.valueAsNumber)">
+            Restore HP
+          </button>
+        </div>
       </div>
       <div class="flex flex-wrap gap-2 mt-2">
-        <div
-          *ngFor="let status of participant.statuses"
-          class="bg-gray-200 text-gray-800 px-2 py-1 rounded flex items-center"
-        >
+        <div *ngFor="let status of participant.statuses" class="bg-gray-200 text-gray-800 px-2 py-1 rounded flex items-center">
           {{ status }}
           <div>
             <button (click)="removeStatus(participant, status)">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-4 w-4 text-red-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
         </div>
       </div>
       <div class="mt-2 text-end">
-        <button
-          class="text-red-500"
-          aria-label="Remove participant"
-          (click)="removeParticipant(participant.id)"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="-mb-2 h-6 w-6 hover:text-red-700 transition duration-150"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-            />
+        <button class="text-red-500" aria-label="Remove participant" (click)="removeParticipant(participant.id)">
+          <svg xmlns="http://www.w3.org/2000/svg" class="-mb-2 h-6 w-6 hover:text-red-700 transition duration-150" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
           </svg>
         </button>
       </div>

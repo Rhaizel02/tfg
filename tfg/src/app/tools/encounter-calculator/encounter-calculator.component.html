@@ -1,1 +1,85 @@
-<p>encounter-calculator works!</p>
+<div class="container mx-auto p-4 text-center flex flex-col min-h-screen">
+    <h1 class="text-indigo-600 text-4xl font-bold my-5">Encounter Calculator</h1>
+
+    <mat-card class="mb-6 mx-2 md:mx-0">
+        <mat-card-content>
+            <div class="flex flex-col md:flex-row justify-around gap-6">
+                
+                <!-- Player Column -->
+                <div class="flex-1">
+                    <h2 class="text-lg font-semibold text-blue-600 mb-2">PLAYERS</h2>
+                    <mat-card *ngIf="this.players.length > 0">
+                        <mat-list class="divide-y divide-gray-200">
+                            <mat-list-item *ngFor="let player of players" class="flex justify-between p-3 hover:bg-gray-50">
+                                <div class="flex justify-between items-center">
+                                    <div class="flex items-center">
+                                        <mat-icon class="text-lg leading-none">person</mat-icon>
+                                        <span class="ml-2 font-medium">{{ player.name | titlecase }}</span>
+                                    </div>
+                                    <span class="text-sm font-semibold">Level: {{ player.level }}</span>
+                                    <button mat-icon-button color="warn" (click)="removePlayer(player)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </div>
+                            </mat-list-item>
+                        </mat-list>
+                    </mat-card>
+
+                    <div class="mt-4">
+                        <mat-form-field class="mr-2">
+                            <input matInput placeholder="Player's name" #playerName>
+                        </mat-form-field>
+                        <mat-form-field class="mr-2">
+                            <input matInput type="number" min="1" placeholder="Player's level" #playerLevel>
+                        </mat-form-field>
+                        <button mat-raised-button color="primary" (click)="addPlayer(playerName, playerLevel)">Add Player</button>
+                    </div>
+                </div>
+
+                <!-- Enemy Column -->
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-lg font-semibold text-red-600 mb-2">ENEMIES</h2>
+                    <mat-card *ngIf="this.enemies.length > 0">
+                        <mat-list class="divide-y divide-gray-200">
+                            <mat-list-item *ngFor="let enemy of enemies" class="flex justify-between p-3 hover:bg-gray-50">
+                                <div class="flex justify-between items-center">
+                                    <div class="flex items-center">
+                                        <mat-icon class="text-lg leading-none">person</mat-icon>
+                                        <span class="ml-2 font-medium">{{ enemy.name | titlecase }}</span>
+                                    </div>
+                                    <span class="text-sm font-semibold">XP: {{ enemy.xp }}</span>
+                                    <button mat-icon-button color="warn" (click)="removeEnemy(enemy)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </div>
+                            </mat-list-item>
+                        </mat-list>
+                    </mat-card>
+                    <div class="mt-4">
+                        <mat-form-field class="mr-2">
+                            <input matInput placeholder="Enemy's Name" #enemyName>
+                        </mat-form-field>
+                        <mat-form-field class="mr-2">
+                            <input matInput type="number" min="1" placeholder="Enemy's XP" #enemyXp>
+                        </mat-form-field>
+                        <button mat-raised-button color="warn" (click)="addEnemy(enemyName, enemyXp)">Add Enemy</button>
+                    </div>
+                </div>
+                
+            </div>
+        </mat-card-content>
+    </mat-card>
+    
+    <!-- Difficulty Feedback -->
+    <div class="mt-6 px-4 py-2 flex flex-col items-center">
+        <label for="difficulty" class="mb-2 font-semibold">Encounter Difficulty:</label>
+        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+            <div id="difficulty" class="bg-blue-600 h-2.5 rounded-full" [style.width]="getDifficultyWidth(difficulty)"></div>
+        </div>
+        <div class="mt-5 rounded-lg">
+            <span [ngClass]="getDifficultyClass(difficulty)" class="text-3xl font-bold p-2">
+                {{ difficulty | uppercase }}
+            </span>
+        </div>
+    </div>
+</div>

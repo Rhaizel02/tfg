@@ -8,21 +8,21 @@
       <!-- Formulario de Contacto -->
       <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-4 mt-5">
         <mat-form-field class="w-full" appearance="fill">
-          <mat-label>Nombre</mat-label>
+          <mat-label>Name</mat-label>
           <input matInput formControlName="name">
-          <mat-error>El nombre es requerido</mat-error>
+          <mat-error>Name is required</mat-error>
         </mat-form-field>
   
         <mat-form-field class="w-full" appearance="fill">
           <mat-label>Email</mat-label>
           <input matInput formControlName="email">
-          <mat-error>Ingresa un email válido</mat-error>
+          <mat-error>Enter a valid email</mat-error>
         </mat-form-field>
   
         <mat-form-field class="w-full" appearance="fill">
-          <mat-label>Mensaje</mat-label>
+          <mat-label>Message</mat-label>
           <textarea matInput formControlName="message"></textarea>
-          <mat-error>El mensaje es requerido</mat-error>
+          <mat-error>Message is required</mat-error>
         </mat-form-field>
   
         <div class="flex justify-center">

@@ -46,6 +46,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TrackerComponent } from './tools/tracker/tracker.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { EncounterCalculatorComponent } from './tools/encounter-calculator/encounter-calculator.component';
 
 // FIREBASE IMPORTATIONS
 import { initializeApp, provideFirebaseApp, getApp} from '@angular/fire/app';
@@ -89,6 +90,7 @@ import { ContactoComponent } from './contacto/contacto.component';
     RegisterComponent,
     ForgotPassComponent,
     UserProfileComponent,
+    EncounterCalculatorComponent,
   ],
   imports: [
     BrowserModule,
