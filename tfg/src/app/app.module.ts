@@ -47,6 +47,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TrackerComponent } from './tools/tracker/tracker.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { EncounterCalculatorComponent } from './tools/encounter-calculator/encounter-calculator.component';
+import { ContactoComponent } from './contacto/contacto.component';
+import { SubclassComponent } from './wiki/character/classes/subclass/subclass.component';
 
 // FIREBASE IMPORTATIONS
 import { initializeApp, provideFirebaseApp, getApp} from '@angular/fire/app';
@@ -61,7 +63,6 @@ import { LoginComponent } from './user_components/login/login.component';
 import { RegisterComponent } from './user_components/register/register.component';
 import { ForgotPassComponent } from './user_components/forgot-pass/forgot-pass.component';
 import { UserProfileComponent } from './user_components/user-profile/user-profile.component';
-import { ContactoComponent } from './contacto/contacto.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { ContactoComponent } from './contacto/contacto.component';
     ForgotPassComponent,
     UserProfileComponent,
     EncounterCalculatorComponent,
+    SubclassComponent,
   ],
   imports: [
     BrowserModule,

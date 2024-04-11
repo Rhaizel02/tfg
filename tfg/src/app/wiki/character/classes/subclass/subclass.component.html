@@ -1,1 +1,12 @@
-<p>subclass works!</p>
+<div *ngIf="this.subclass" class="min-h-screen p-4">
+    <mat-card class="max-w-4xl mx-auto">
+      <mat-card-header class="bg-indigo-600 pb-1">
+        <mat-card-title class="ml-6 text-white text-3xl">{{ subclass.name }}</mat-card-title>
+        <mat-card-subtitle class="ml-6 text-indigo-200">{{ subclass.document__title }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="bg-white p-6">
+        <div class="text-lg prose prose-lg prose-indigo ml-4 mr-auto  max-w-full" [innerHTML]="getHtml(subclass.desc)"></div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

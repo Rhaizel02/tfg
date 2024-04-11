@@ -16,7 +16,6 @@ export class BackgroundsComponent {
   }
 
   BackgroundDetail(slug: string) {
-    console.log(slug);
     this.router.navigate(['/backgrounds/', slug]);
   }
 }

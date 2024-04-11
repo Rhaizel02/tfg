@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Consulta } from '../../interfaces/consulta';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, filter, map, throwError } from 'rxjs';
 import { RuleInterface } from '../../interfaces/rule-interface';
 import { BackgroundInterface } from '../../interfaces/background';
-
 
 @Injectable({
   providedIn: 'root',
@@ -109,13 +108,11 @@ export class DndApiService {
 
   getClasses() {
     let classes: any[] = [];
-    this.http
-      .get(`${this.apiUrl}classes/`)
-      .subscribe((data: any) => {
-        for (const clase of data.results) {
-          classes.push(clase);
-        }
-      });
+    this.http.get(`${this.apiUrl}classes/`).subscribe((data: any) => {
+      for (const clase of data.results) {
+        classes.push(clase);
+      }
+    });
     return classes;
   }
 
@@ -123,20 +120,19 @@ export class DndApiService {
     return this.http.get(`${this.apiUrl}classes/${s}`);
   }
 
-  getSubClassDetails(s: string){
-    return this.http.get(`${this.apiUrl}subclasses/${s}`)
-  }
-  
 
-  getBackgrounds(){
+  getBackgrounds() {
     let backgrounds: BackgroundInterface[] = [];
-    this.http
-      .get(`${this.apiUrl}backgrounds/`)
-      .subscribe((data: any) => {
-        for (const background of data.results) {
-          backgrounds.push({name: background.name, slug: background.slug, desc: background.desc, document__title: background.document__title});
-        }
-      });
+    this.http.get(`${this.apiUrl}backgrounds/`).subscribe((data: any) => {
+      for (const background of data.results) {
+        backgrounds.push({
+          name: background.name,
+          slug: background.slug,
+          desc: background.desc,
+          document__title: background.document__title,
+        });
+      }
+    });
     return backgrounds;
   }
 
@@ -154,6 +150,18 @@ export class DndApiService {
           results: data.results,
         };
         return consulta;
+      })
+    );
+  }
+
+  getSubclassDetails(class_slug: string, subclass_slug: string): Observable<any> {
+    return this.getClassDetails(class_slug).pipe(
+      map((data: any) => {
+        const subclass = data.archetypes.find((archetype: any) => archetype.slug === subclass_slug);
+        if (!subclass) {
+          throw new Error(`Subclass not found: ${subclass_slug}`);
+        }
+        return subclass;
       })
     );
   }
