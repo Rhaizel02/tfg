@@ -13,6 +13,7 @@ export class RaceComponent implements OnInit {
   race: any;
   raceSlug: any = '';
   info: SafeHtml[] = [];
+  x : string = '';
   constructor(
     private route: ActivatedRoute,
     private api: DndApiService,
@@ -27,7 +28,8 @@ export class RaceComponent implements OnInit {
     if (this.raceSlug) {
       this.api.getRaceDetails(this.raceSlug).subscribe((data) => {
         this.race = data;
-        this.processMarkdown();
+        this.x = this.race.desc.toString();
+        // this.processMarkdown();
       });
     }
   }
@@ -35,7 +37,7 @@ export class RaceComponent implements OnInit {
   processMarkdown() {
     this.info.push(
       this.sanitizer.bypassSecurityTrustHtml(
-        marked.parse(this.race.desc.toString())
+        marked.parse(this.race.desc)
       )
     );
     this.info.push(

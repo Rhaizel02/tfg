@@ -64,6 +64,8 @@ import { RegisterComponent } from './user_components/register/register.component
 import { ForgotPassComponent } from './user_components/forgot-pass/forgot-pass.component';
 import { UserProfileComponent } from './user_components/user-profile/user-profile.component';
 
+import { marked } from 'marked';
+
 @NgModule({
   declarations: [
     AppComponent,
