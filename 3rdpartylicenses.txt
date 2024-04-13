@@ -5,7 +5,7 @@ MIT
 MIT
 The MIT License
 
-Copyright (c) 2023 Google LLC.
+Copyright (c) 2024 Google LLC.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -32,6 +32,9 @@ MIT
 @angular/core
 MIT
 
+@angular/fire
+MIT
+
 @angular/forms
 MIT
 
@@ -39,7 +42,7 @@ MIT
 MIT
 The MIT License
 
-Copyright (c) 2023 Google LLC.
+Copyright (c) 2024 Google LLC.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -65,6 +68,51 @@ MIT
 
 @angular/router
 MIT
+
+@firebase/analytics
+Apache-2.0
+
+@firebase/app
+Apache-2.0
+
+@firebase/auth
+Apache-2.0
+
+@firebase/component
+Apache-2.0
+
+@firebase/firestore
+Apache-2.0
+
+@firebase/installations
+Apache-2.0
+
+@firebase/logger
+Apache-2.0
+
+@firebase/util
+Apache-2.0
+
+@firebase/webchannel-wrapper
+Apache-2.0
+
+firebase/analytics
+
+firebase/app
+
+firebase/auth
+
+firebase/firestore
+
+idb
+ISC
+ISC License (ISC)
+Copyright (c) 2016, Jake Archibald <jaffathecake@gmail.com>
+
+Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
 
 marked
 MIT
@@ -113,6 +161,10 @@ Redistribution and use in source and binary forms, with or without modification,
 
 This software is provided by the copyright holders and contributors “as is” and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall the copyright owner or contributors be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.
 
+
+rxfire/auth
+
+rxfire/firestore
 
 rxjs
 Apache-2.0
