@@ -29,7 +29,7 @@ export class RaceComponent implements OnInit {
       this.api.getRaceDetails(this.raceSlug).subscribe((data) => {
         this.race = data;
         this.x = this.race.desc.toString();
-        // this.processMarkdown();
+        this.processMarkdown();
       });
     }
   }
