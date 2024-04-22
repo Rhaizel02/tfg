@@ -8,17 +8,21 @@ import { Auth,
   signInWithPopup,
   signOut,
   sendEmailVerification,
-  User } from '@angular/fire/auth';
+  User,
+updateProfile} from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { collection, addDoc, Firestore } from '@angular/fire/firestore';
+import { updateCurrentUser } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   UserData : any;
-  constructor(private auth: Auth,private router : Router, public ngZone: NgZone){
+  constructor(private auth: Auth,private router : Router, public ngZone: NgZone, private firestore: Firestore){
     onAuthStateChanged(this.auth,(user: any)=>{
       if(user){
+        updateCurrentUser(this.auth, user);
         this.UserData = user;
         localStorage.setItem('user', JSON.stringify(this.UserData));
         JSON.parse(localStorage.getItem('user')!);
@@ -52,22 +56,34 @@ export class AuthService {
     }
 
     //Register Method
-    Register(email : string, password : string) {
+    // Register Method
+    Register(username: string, email: string, password: string) {
       return createUserWithEmailAndPassword(this.auth, email, password)
-      .then((result) => {
-        this.UserData = result.user;
-        this.ngZone.run(() => {
-           /* Call the SendVerificaitonMail() function when new user sign
-        up and returns promise */
-          this.sendEmailVerification()
-          this.router.navigate(['/profile']);
+        .then((result) => {
+          updateProfile(result.user, { displayName: username });
+          this.UserData = result.user;
+          this.UserData.displayName = username;
+          this.registerUserInFirestore(username, email, this.UserData.uid, this.UserData.photoURL);
+          this.ngZone.run(() => {
+            this.sendEmailVerification();
+            this.router.navigate(['/profile']);
+          });
+        })
+        .catch((error) => {
+          window.alert(error.message);
         });
-      })
-      .catch((error) => {
-        window.alert(error.message);
-      });
     }
 
+    // Register user in Firestore
+    registerUserInFirestore(name : string, mail : string, id : string, photo : string) {
+      // Add a new document with a generated id.
+      addDoc(collection(this.firestore, "users"), {
+        username: name,
+        email: mail,
+        uid: id,
+        photoURL: photo
+      });
+    }
 
     //Login Method
     Login(email : string, password : string){
@@ -87,24 +103,16 @@ export class AuthService {
    //Logout
     Logout() {
       signOut(this.auth).then(()=>this.router.navigate(['/login']))
-
-
     }
 
 
   //login with Email or Facebook
     //Login with Google
     GoogleAuth() {
-      return this.loginWithPopup(new GoogleAuthProvider());
+      return this.loginWithPopup(new GoogleAuthProvider()).then(() => {
+        this.registerUserInFirestore(this.UserData.displayName, this.UserData.email, this.UserData.uid, this.UserData.photoURL);
+      });
     }
-
-
-
-    //Login with Facebook
-    //FacebookAuth() {
-    //  return this.loginWithPopup(new FacebookAuthProvider());
-    //}
-
 
 
     //Pop Up Provider

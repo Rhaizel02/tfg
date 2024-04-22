@@ -47,6 +47,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { EncounterCalculatorComponent } from './tools/encounter-calculator/encounter-calculator.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { SubclassComponent } from './wiki/character/classes/subclass/subclass.component';
+import { AddFriendModalComponent } from './user_components/modal/add-friend-modal/add-friend-modal.component';
 
 // FIREBASE IMPORTATIONS
 import { initializeApp, provideFirebaseApp, getApp} from '@angular/fire/app';
@@ -92,6 +93,7 @@ import { UserProfileComponent } from './user_components/user-profile/user-profil
     UserProfileComponent,
     EncounterCalculatorComponent,
     SubclassComponent,
+    AddFriendModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -7,5 +7,8 @@ import { FirebaseService } from '../services/firebase/firebase.service';
 })
 export class InicioComponent {
   constructor(private firebase: FirebaseService) {}
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    console.log("InicioComponent");
+    this.firebase.modifyMessage("prueba", "Modificado desde aquí");
+  }
 }

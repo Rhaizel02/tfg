@@ -1,0 +1,20 @@
+<div class="text-center">
+<h2 mat-dialog-title>Add Friend</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="addFriendForm">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Friend's UID</mat-label>
+      <input matInput formControlName="friendUid">
+      <mat-error *ngIf="addFriendForm.get('friendUid')">
+        Please enter a valid UID
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <div class="mr-5 mb-2 -mt-2"> 
+  <button mat-flat-button color="warn" mat-dialog-close>Cancel</button>
+  <button mat-flat-button color="accent" (click)="addFriend()" [disabled]="addFriendForm.invalid">Add Friend</button>
+</div>
+</mat-dialog-actions>
+</div>

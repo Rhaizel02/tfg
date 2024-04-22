@@ -1,24 +1,71 @@
-<div class="container mx-auto px-4">
-    <div class="flex flex-wrap justify-center">
-      <!-- Main Content -->
-      <main class="w-full lg:w-2/3">
-        <div class="py-5 border-b border-gray-200">
-          <h1 *ngIf="this.user" class="text-2xl font-semibold">Welcome {{ user.displayName ? user.displayName : 'User'  }}!</h1>
-        </div>
-        <!-- User Data -->
-        <div class="py-4" *ngIf="this.user">
-          <div class="flex items-start space-x-4">
-            <img class="w-20 h-20 rounded-full object-cover" src="{{ user.photoURL ? user.photoURL : '/assets/dummy-user.png' }}" alt="{{ user.displayName }}">
-            <div>
-              <h2 class="text-xl">Username: <strong>{{ user.displayName ? user.displayName : 'User' }}</strong></h2>
-              <p>User ID: <strong>{{ user.uid }}</strong></p>
-              <p>Email: <strong>{{ user.email }}</strong></p>
-              <p>Email Verified: <strong>{{ user.emailVerified ? 'Yes' : 'No' }}</strong></p>
-              <button class="mt-1" mat-flat-button color="warn" (click)="authService.Logout()">Logout</button>
-            </div>
+<div class="container mx-auto px-4 pt-4">
+  <div class="flex flex-wrap justify-center">
+    <!-- Main Content -->
+    <main class="w-full lg:w-2/3 bg-white shadow rounded-lg overflow-hidden">
+      <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 text-white p-5">
+        <h1 *ngIf="this.user" class="text-3xl font-bold">
+          Welcome, {{ user.displayName ? user.displayName : "User" }}!
+        </h1>
+      </div>
+      <!-- User Data -->
+      <div class="p-4" *ngIf="this.user">
+        <div class="flex items-center space-x-4">
+          <img
+            class="w-24 h-24 rounded-full object-cover border-2 border-gray-300"
+            [src]="user.photoURL || 'https://gravatar.com/avatar/8aa0da5c8072661e9cd7e1ba4b3341e2?s=400&d=mp&r=x'"
+            [alt]="user.displayName || 'User'"
+          />
+          <div>
+            <h2 class="text-xl text-gray-800">Username: <strong>{{ user.displayName || "User" }}</strong></h2>
+            <p>User ID: <strong>{{ user.uid }}</strong></p>
+            <p>Email: <strong>{{ user.email }}</strong></p>
+            <p>Email Verified: <strong>{{ user.emailVerified ? "Yes" : "No" }}</strong></p>
+            <button mat-flat-button color="warn" (click)="authService.Logout()" class="mt-2">
+              Logout
+            </button>
           </div>
         </div>
-      </main>
-    </div>
-  </div>
-  
+      </div>
+
+      <div class="flex flex-wrap border-t border-gray-200">
+        <!-- Friends Section -->
+        <div class="w-full md:w-1/3 p-4" *ngIf="this.user">
+          <h2 class="text-xl text-gray-800">Friends</h2>
+          <ul>
+            <li *ngFor="let friend of user.friends" class="text-gray-700">{{ friend.username }}</li>
+          </ul>
+
+          <div class="text-center">
+          <button mat-flat-button color="primary" class="my-2" (click)="openAddFriendModal()">
+            Add Friend
+          </button>
+          </div>
+        </div>
+        <!-- Pending Requests -->
+        <div class="w-full md:w-1/3 p-4" *ngIf="this.recieved_requests.length > 0">
+          <h2 class="text-xl text-gray-800">Sent Requests</h2>
+          <ul>
+            <li *ngFor="let req of recieved_requests">
+              <div class="text-gray-700">
+                <p>Receiver Name: {{ req.username }} </p>
+                <p>Receiver ID: {{ req.reciever_id }}</p>
+                <p>Status: {{ req.status }}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- Requests Received -->
+        <div class="w-full md:w-1/3 p-4" *ngIf="this.sent_requests.length > 0">
+          <h2 class="text-xl text-gray-800">Received Requests</h2>
+          <ul>
+            <li *ngFor="let req of sent_requests">
+              <div class="text-gray-700">
+                <p>Sender Name: {{ req.username }}</p>
+                <p>Sender ID: {{ req.sender_id }}</p>
+                <p>Status: {{ req.status }}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>

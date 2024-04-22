@@ -7,7 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "analyze": "webpack-bundle-analyzer dist/tfg/stats.json"
+    "compodoc": "npx compodoc -p tsconfig.doc.json",
+    "compodoc:build": "compodoc -p tsconfig.doc.json",
+    "compodoc:build-and-serve": "compodoc -p tsconfig.doc.json -s",
+    "compodoc:serve": "compodoc -s"
   },
   "private": true,
   "dependencies": {
@@ -31,6 +34,7 @@
   "devDependencies": {
     "@angular/cli": "^17.3.3",
     "@angular/compiler-cli": "^17.3.3",
+    "@compodoc/compodoc": "^1.1.23",
     "@tailwindcss/typography": "^0.5.12",
     "@types/jasmine": "~4.3.0",
     "angular-cli-ghpages": "^2.0.0-beta.2",
